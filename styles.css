@@ -231,9 +231,30 @@ section {
 
 .about-content {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 200px 2fr 1fr;
     gap: 3rem;
     align-items: start;
+}
+
+.about-photo {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+}
+
+.profile-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 121, 0, 0.4);
 }
 
 .about-text h3 {
@@ -611,6 +632,15 @@ section {
         grid-template-columns: 1fr;
     }
 
+    .about-photo {
+        margin-bottom: 2rem;
+    }
+
+    .profile-photo {
+        width: 150px;
+        height: 150px;
+    }
+
     .about-stats {
         flex-direction: row;
     }
@@ -736,31 +766,42 @@ section {
 
 .modal-content {
     background: var(--white);
-    margin: 2rem auto;
-    padding: 2.5rem;
+    margin: 1rem auto;
+    padding: 2rem;
     border-radius: var(--border-radius);
-    max-width: 550px;
+    max-width: 500px;
+    max-height: 90vh;
     width: 90%;
     position: relative;
     animation: slideDown 0.4s ease;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
 }
 
 .modal-close {
     position: absolute;
-    right: 20px;
-    top: 20px;
-    font-size: 2rem;
+    right: 15px;
+    top: 15px;
+    font-size: 2.5rem;
     font-weight: bold;
-    color: #aaa;
+    color: #999;
     cursor: pointer;
     transition: var(--transition);
     line-height: 1;
+    z-index: 10;
+    background: var(--white);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-close:hover {
-    color: var(--secondary-color);
-    transform: rotate(90deg);
+    color: var(--white);
+    background: var(--primary-color);
+    transform: scale(1.1);
 }
 
 .modal-title {
@@ -790,7 +831,7 @@ section {
 .priority-cta {
     background: linear-gradient(135deg, #FF7900 0%, #E66A00 100%);
     color: var(--white);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: var(--border-radius);
     text-align: center;
     margin-bottom: 1.5rem;
@@ -798,24 +839,24 @@ section {
 }
 
 .priority-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
     animation: pulse 2s infinite;
 }
 
 .priority-text h3 {
-    margin-bottom: 0.8rem;
-    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
 }
 
 .priority-phone {
     display: inline-block;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: var(--white);
     text-decoration: none;
-    margin: 0.5rem 0;
-    padding: 0.5rem 1rem;
+    margin: 0.3rem 0;
+    padding: 0.4rem 1rem;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     transition: var(--transition);
@@ -827,8 +868,8 @@ section {
 }
 
 .priority-subtitle {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
     opacity: 0.9;
 }
 
@@ -902,38 +943,56 @@ section {
 /* Responsive Modal */
 @media (max-width: 768px) {
     .modal-content {
-        padding: 2rem 1.5rem;
-        margin: 1rem;
+        padding: 1.5rem 1rem;
+        margin: 0.5rem;
         max-width: 95%;
+        max-height: 95vh;
+    }
+
+    .modal-close {
+        width: 35px;
+        height: 35px;
+        font-size: 2rem;
     }
 
     .priority-phone {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .modal-title {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
     }
 }
 
 @media (max-width: 480px) {
     .modal-content {
-        padding: 1.5rem 1rem;
+        padding: 1.2rem 0.8rem;
+        margin: 0.3rem;
     }
 
     .priority-cta {
-        padding: 1.5rem 1rem;
+        padding: 1rem 0.8rem;
     }
 
     .priority-icon {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .priority-text h3 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .priority-phone {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+        padding: 0.3rem 0.8rem;
+    }
+
+    .modal-close {
+        width: 32px;
+        height: 32px;
+        font-size: 1.8rem;
+        right: 10px;
+        top: 10px;
     }
 }
