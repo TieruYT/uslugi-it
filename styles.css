@@ -242,9 +242,6 @@ section {
     align-items: center;
     width: 100% !important;
     padding: 2rem 0;
-    background: #f0f0f0 !important;
-    border: 5px solid red !important; /* DEBUG */
-    min-height: 250px !important;
 }
 
 .profile-photo {
@@ -252,11 +249,10 @@ section {
     height: 220px !important;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid blue !important; /* DEBUG */
+    border: 5px solid var(--primary-color);
     box-shadow: 0 8px 25px rgba(255, 121, 0, 0.3);
     transition: var(--transition);
     display: block !important;
-    background: yellow !important; /* DEBUG - jeśli nie ma obrazka, zobaczysz żółte koło */
 }
 
 .profile-photo:hover {
@@ -666,8 +662,6 @@ section {
         align-items: center !important;
         width: 100% !important;
         padding: 2rem 0 !important;
-        min-height: 200px;
-        background: #f0f0f0 !important;
     }
 
     .profile-photo {
