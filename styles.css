@@ -241,6 +241,8 @@ section {
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding: 2rem 0;
+    background: #f0f0f0; /* tymczasowe - do debugowania */
 }
 
 .profile-photo {
