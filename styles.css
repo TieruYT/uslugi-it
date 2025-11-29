@@ -237,22 +237,26 @@ section {
 }
 
 .about-photo {
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 100% !important;
     padding: 2rem 0;
-    background: #f0f0f0; /* tymczasowe - do debugowania */
+    background: #f0f0f0 !important;
+    border: 5px solid red !important; /* DEBUG */
+    min-height: 250px !important;
 }
 
 .profile-photo {
-    width: 220px;
-    height: 220px;
+    width: 220px !important;
+    height: 220px !important;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid var(--primary-color);
+    border: 5px solid blue !important; /* DEBUG */
     box-shadow: 0 8px 25px rgba(255, 121, 0, 0.3);
     transition: var(--transition);
+    display: block !important;
+    background: yellow !important; /* DEBUG - jeśli nie ma obrazka, zobaczysz żółte koło */
 }
 
 .profile-photo:hover {
