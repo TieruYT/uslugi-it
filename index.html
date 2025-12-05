@@ -7,14 +7,26 @@
     <title>Usługi IT - Dawid Saworski | Toruń</title>
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLGYMVFPQQ"></script>
+    <!-- Google Analytics - ładowane tylko po zgodzie na cookies -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function loadGoogleAnalytics() {
+        if (localStorage.getItem('cookieConsent') === 'accepted') {
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-JLGYMVFPQQ';
+          document.head.appendChild(script);
 
-      gtag('config', 'G-JLGYMVFPQQ');
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-JLGYMVFPQQ');
+        }
+      }
+      // Sprawdź zgodę przy ładowaniu strony
+      if (localStorage.getItem('cookieConsent') === 'accepted') {
+        loadGoogleAnalytics();
+      }
     </script>
 </head>
 <body>
@@ -87,19 +99,12 @@
                     </ul>
                     <p class="about-highlight">Moja przewaga? Tłumaczę skomplikowane rzeczy prostym językiem i pomagam dopóki problem nie zostanie rozwiązany.</p>
                 </div>
-                <div class="about-stats">
-                    <div class="stat-card">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Lat doświadczenia</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Zadowolenie klientów</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">0 zł</div>
-                        <div class="stat-label">Dojazd</div>
-                    </div>
+                <div class="about-stats-inline">
+                    <span class="stat-inline"><strong>10+</strong> lat doświadczenia</span>
+                    <span class="stat-separator">•</span>
+                    <span class="stat-inline"><strong>100%</strong> zadowolonych klientów</span>
+                    <span class="stat-separator">•</span>
+                    <span class="stat-inline"><strong>0 zł</strong> za dojazd</span>
                 </div>
             </div>
         </div>
@@ -182,21 +187,21 @@
 
                 <div class="pricing-card">
                     <div class="pricing-header">
-                        <h3>Transfer danych</h3>
+                        <h3>Nowy telefon</h3>
                         <div class="price">
                             <span class="amount">100 zł</span>
                         </div>
                     </div>
                     <ul class="pricing-features">
-                        <li>✓ Zgrywanie danych między telefonami</li>
+                        <li>✓ Konfiguracja nowego telefonu</li>
+                        <li>✓ Zgrywanie danych ze starego telefonu</li>
                         <li>✓ Kopia zapasowa do komputera lub chmury</li>
                         <li>✓ Dojazd gratis</li>
                     </ul>
-                    <button class="btn-order" data-service="Transfer danych" data-price="100 zł">Umów się</button>
+                    <button class="btn-order" data-service="Konfiguracja i zgrywanie danych na nowy telefon" data-price="100 zł">Umów się</button>
                 </div>
 
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Popularne</div>
+                <div class="pricing-card">
                     <div class="pricing-header">
                         <h3>Serwis komputera</h3>
                         <div class="price">
@@ -246,7 +251,8 @@
                     <button class="btn-order" data-service="Kamery domowe" data-price="250 zł">Umów się</button>
                 </div>
 
-                <div class="pricing-card">
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Popularne</div>
                     <div class="pricing-header">
                         <h3>Pakiet kompleksowy</h3>
                         <div class="price">
@@ -306,6 +312,13 @@
                             <p>Toruń i okolice<br>(dojazd gratis!)</p>
                         </div>
                     </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💬</div>
+                        <div>
+                            <strong>WhatsApp</strong>
+                            <p><a href="https://wa.me/48535035761" target="_blank">Napisz na WhatsApp</a></p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="contact-form-wrapper">
@@ -340,6 +353,12 @@
                         <div class="form-group">
                             <label for="message">Wiadomość *</label>
                             <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="consent" required>
+                                <span>Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na zapytanie. <a href="#privacy" class="privacy-link">Polityka prywatności</a></span>
+                            </label>
                         </div>
                         <button type="submit" class="btn btn-primary">Wyślij zapytanie</button>
                     </form>
@@ -426,10 +445,88 @@
                     <textarea id="orderMessage" name="message" rows="3" placeholder="Np. preferowany termin, dodatkowe pytania..."></textarea>
                 </div>
 
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="consent" required>
+                        <span>Wyrażam zgodę na przetwarzanie moich danych osobowych. <a href="#privacy" class="privacy-link">Polityka prywatności</a></span>
+                    </label>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Wyślij zapytanie</button>
             </form>
 
             <div id="orderFormStatus" class="form-status"></div>
+        </div>
+    </div>
+
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-content">
+            <p>Ta strona używa plików cookies (Google Analytics) do analizy ruchu. Czy wyrażasz zgodę?</p>
+            <div class="cookie-buttons">
+                <button id="cookieAccept" class="btn btn-primary btn-small">Akceptuję</button>
+                <button id="cookieReject" class="btn btn-secondary btn-small">Odrzucam</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content modal-large">
+            <span class="modal-close privacy-close">&times;</span>
+            <h2 class="modal-title">Polityka Prywatności</h2>
+
+            <div class="privacy-content">
+                <h3>1. Administrator danych</h3>
+                <p>Administratorem Twoich danych osobowych jest <strong>Dawid Saworski</strong>, prowadzący działalność nierejestrowaną pod nazwą "Usługi IT - Dawid Saworski".</p>
+                <p>Kontakt: <strong>+48 535 035 761</strong>, email: <strong>saworski.uslugi@gmail.com</strong></p>
+
+                <h3>2. Jakie dane zbieram i w jakim celu</h3>
+                <p>Zbieram następujące dane poprzez formularze kontaktowe:</p>
+                <ul>
+                    <li><strong>Imię i nazwisko</strong> - w celu identyfikacji i personalizacji kontaktu</li>
+                    <li><strong>Adres email</strong> - w celu odpowiedzi na zapytanie</li>
+                    <li><strong>Numer telefonu</strong> - w celu umówienia wizyty</li>
+                    <li><strong>Treść wiadomości</strong> - w celu zrozumienia potrzeb i przygotowania oferty</li>
+                </ul>
+                <p><strong>Cel:</strong> Kontakt z Klientem w celu umówienia się na wizytę w miejscu wyznaczonym przez Klienta.</p>
+
+                <h3>3. Jak długo przechowuję dane</h3>
+                <p>Twoje dane osobowe przechowuję przez okres:</p>
+                <ul>
+                    <li><strong>Zapytania kontaktowe:</strong> do 12 miesięcy od ostatniego kontaktu</li>
+                    <li><strong>Dane klientów (zrealizowane usługi):</strong> do 5 lat dla celów podatkowych</li>
+                    <li><strong>Po tym czasie dane są trwale usuwane</strong></li>
+                </ul>
+
+                <h3>4. Twoje prawa (RODO)</h3>
+                <p>Masz prawo do:</p>
+                <ul>
+                    <li><strong>Dostępu</strong> - możesz zapytać jakie dane o Tobie posiadam</li>
+                    <li><strong>Sprostowania</strong> - możesz poprosić o poprawienie nieprawidłowych danych</li>
+                    <li><strong>Usunięcia</strong> - możesz zażądać usunięcia swoich danych ("prawo do bycia zapomnianym")</li>
+                    <li><strong>Sprzeciwu</strong> - możesz sprzeciwić się przetwarzaniu danych</li>
+                    <li><strong>Przenoszenia</strong> - możesz otrzymać swoje dane w formacie elektronicznym</li>
+                </ul>
+                <p>Aby skorzystać z tych praw, skontaktuj się ze mną: <strong>+48 535 035 761</strong> lub <strong>saworski.uslugi@gmail.com</strong></p>
+
+                <h3>5. Google Analytics</h3>
+                <p>Strona korzysta z Google Analytics do analizy ruchu. Usługa ta używa plików cookies. Dane są anonimizowane i służą wyłącznie do celów statystycznych (np. liczba odwiedzin strony).</p>
+                <p>Google Analytics jest ładowany <strong>tylko po Twojej zgodzie</strong> (baner cookies).</p>
+                <p>Możesz zarządzać cookies w ustawieniach przeglądarki lub zainstalować <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">dodatek blokujący Google Analytics</a>.</p>
+
+                <h3>6. Bezpieczeństwo danych</h3>
+                <p>Twoje dane są przesyłane przez zabezpieczone połączenie (HTTPS) i przechowywane z zachowaniem odpowiednich środków bezpieczeństwa.</p>
+
+                <h3>7. Kontakt</h3>
+                <p>W sprawach dotyczących ochrony danych osobowych możesz się ze mną skontaktować:</p>
+                <ul>
+                    <li>Telefon: <strong>+48 535 035 761</strong></li>
+                    <li>Email: <strong>saworski.uslugi@gmail.com</strong></li>
+                </ul>
+
+                <p class="privacy-date"><em>Data ostatniej aktualizacji: grudzień 2025</em></p>
+            </div>
         </div>
     </div>
 

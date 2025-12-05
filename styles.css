@@ -312,6 +312,46 @@ section {
     font-weight: 500;
 }
 
+/* Inline Stats - kompaktowa wersja */
+.about-stats-inline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem 1.5rem;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-top: 1.5rem;
+}
+
+.stat-inline {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.stat-inline strong {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.stat-separator {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    .about-stats-inline {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .stat-separator {
+        display: none;
+    }
+}
+
 .about-stats {
     display: flex;
     flex-direction: column;
@@ -1023,4 +1063,149 @@ section {
         right: 10px;
         top: 10px;
     }
+}
+
+/* Cookie Banner */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--secondary-color);
+    color: var(--white);
+    padding: 1rem 1.5rem;
+    z-index: 3000;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+.cookie-banner.show {
+    display: block;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.cookie-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.cookie-content p {
+    margin: 0;
+    flex: 1;
+    min-width: 200px;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn-small {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+    .cookie-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cookie-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Checkbox RODO */
+.checkbox-group {
+    margin-top: 1rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    margin-top: 2px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+}
+
+.privacy-link {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.privacy-link:hover {
+    color: var(--primary-dark);
+}
+
+/* Privacy Modal */
+.modal-large {
+    max-width: 700px;
+}
+
+.privacy-content {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+.privacy-content h3 {
+    color: var(--secondary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.privacy-content h3:first-child {
+    margin-top: 0;
+}
+
+.privacy-content p {
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
+.privacy-content ul {
+    margin: 0.5rem 0 1rem 1.5rem;
+    color: var(--text-light);
+}
+
+.privacy-content ul li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.privacy-date {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    color: var(--text-light);
+    font-size: 0.9rem;
 }

@@ -283,6 +283,72 @@ document.head.appendChild(style);
 
 console.log('🚀 Website loaded successfully!');
 
+// Cookie Banner Functionality
+const cookieBanner = document.getElementById('cookieBanner');
+const cookieAccept = document.getElementById('cookieAccept');
+const cookieReject = document.getElementById('cookieReject');
+
+// Show cookie banner if no consent stored
+if (!localStorage.getItem('cookieConsent')) {
+    setTimeout(() => {
+        cookieBanner.classList.add('show');
+    }, 1000);
+}
+
+// Accept cookies
+cookieAccept.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'accepted');
+    cookieBanner.classList.remove('show');
+    // Load Google Analytics
+    if (typeof loadGoogleAnalytics === 'function') {
+        loadGoogleAnalytics();
+    }
+});
+
+// Reject cookies
+cookieReject.addEventListener('click', () => {
+    localStorage.setItem('cookieConsent', 'rejected');
+    cookieBanner.classList.remove('show');
+});
+
+// Privacy Policy Modal
+const privacyModal = document.getElementById('privacyModal');
+const privacyLinks = document.querySelectorAll('.privacy-link, a[href="#privacy"]');
+const privacyClose = document.querySelector('.privacy-close');
+
+// Open privacy modal
+privacyLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        privacyModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+// Close privacy modal
+if (privacyClose) {
+    privacyClose.addEventListener('click', () => {
+        privacyModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+}
+
+// Close privacy modal when clicking outside
+privacyModal.addEventListener('click', (e) => {
+    if (e.target === privacyModal) {
+        privacyModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// Close privacy modal with ESC key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && privacyModal.classList.contains('active')) {
+        privacyModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+});
+
 // Order Modal Functionality
 const orderModal = document.getElementById('orderModal');
 const orderButtons = document.querySelectorAll('.btn-order');
