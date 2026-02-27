@@ -520,6 +520,168 @@ section {
     border-left: 4px solid var(--primary-color);
 }
 
+/* Booking Section */
+.booking {
+    background: var(--white);
+}
+
+.booking-info {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.booking-info-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg-light);
+    padding: 1.2rem 1.5rem;
+    border-radius: var(--border-radius);
+    min-width: 240px;
+    flex: 1;
+    max-width: 320px;
+}
+
+.booking-info-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.booking-info-card strong {
+    display: block;
+    color: var(--secondary-color);
+    margin-bottom: 0.2rem;
+}
+
+.booking-info-card p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.booking-embed {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 2rem;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    background: var(--bg-light);
+}
+
+.booking-embed iframe {
+    width: 100%;
+    height: 700px;
+    border: none;
+    display: block;
+}
+
+.booking-placeholder {
+    display: none;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.booking-placeholder.active {
+    display: block;
+}
+
+.booking-placeholder-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.booking-placeholder h3 {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.booking-placeholder p {
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.booking-placeholder-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-whatsapp {
+    background: #25D366;
+    color: var(--white);
+    padding: 15px 35px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.btn-whatsapp:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+}
+
+.booking-note {
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-color);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.booking-note p {
+    color: var(--text-light);
+    margin: 0.3rem 0;
+}
+
+@media (max-width: 768px) {
+    .booking-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .booking-info-card {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .booking-embed iframe {
+        height: 600px;
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-embed iframe {
+        height: 500px;
+    }
+
+    .booking-placeholder-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 /* Contact Section */
 .contact-content {
     display: grid;

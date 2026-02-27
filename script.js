@@ -281,6 +281,25 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// Cal.com embed - show placeholder if not configured yet
+const calcomEmbed = document.getElementById('calcomEmbed');
+const bookingPlaceholder = document.getElementById('bookingPlaceholder');
+
+if (calcomEmbed) {
+    const calSrc = calcomEmbed.getAttribute('src');
+    // Show placeholder if Cal.com username hasn't been set yet
+    if (calSrc.includes('TWOJ-USERNAME')) {
+        calcomEmbed.style.display = 'none';
+        bookingPlaceholder.classList.add('active');
+    } else {
+        // Handle iframe load error
+        calcomEmbed.addEventListener('error', () => {
+            calcomEmbed.style.display = 'none';
+            bookingPlaceholder.classList.add('active');
+        });
+    }
+}
+
 console.log('🚀 Website loaded successfully!');
 
 // Cookie Banner Functionality
