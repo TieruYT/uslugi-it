@@ -29,17 +29,21 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
     });
 });
 
-// Smooth scroll for anchor links
+// Smooth scroll for same-page anchor links only
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const offsetTop = target.offsetTop - 80;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
+        const href = this.getAttribute('href');
+        // Only handle pure anchors (#something), not links to other pages
+        if (href.startsWith('#') && href.length > 1) {
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                const offsetTop = target.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
         }
     });
 });
@@ -83,11 +87,11 @@ document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
 });
 
-// Form handling (Getform)
+// Form handling (Getform) - only on pages with contact form
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
 
-if (contactForm) {
+if (contactForm && formStatus) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -95,7 +99,6 @@ if (contactForm) {
         const submitButton = contactForm.querySelector('button[type="submit"]');
         const originalButtonText = submitButton.textContent;
 
-        // Disable button and show loading state
         submitButton.disabled = true;
         submitButton.textContent = 'Wysyłanie...';
 
@@ -124,7 +127,6 @@ if (contactForm) {
             submitButton.disabled = false;
             submitButton.textContent = originalButtonText;
 
-            // Hide status message after 5 seconds
             setTimeout(() => {
                 formStatus.style.display = 'none';
             }, 5000);
@@ -182,42 +184,7 @@ scrollTopButton.addEventListener('mouseleave', () => {
     scrollTopButton.style.transform = 'scale(1)';
 });
 
-// Animate stats on scroll
-const statNumbers = document.querySelectorAll('.stat-number');
-let animated = false;
-
-const animateStats = () => {
-    const statsSection = document.querySelector('.about-stats');
-    if (!statsSection) return;
-
-    const rect = statsSection.getBoundingClientRect();
-    const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
-
-    if (isVisible && !animated) {
-        animated = true;
-        statNumbers.forEach(stat => {
-            const text = stat.textContent;
-            if (text.includes('+')) {
-                const target = parseInt(text);
-                let current = 0;
-                const increment = target / 50;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        stat.textContent = target + '+';
-                        clearInterval(timer);
-                    } else {
-                        stat.textContent = Math.floor(current) + '+';
-                    }
-                }, 30);
-            }
-        });
-    }
-};
-
-window.addEventListener('scroll', animateStats);
-
-// Typing effect for hero subtitle (optional)
+// Typing effect for hero subtitle
 const heroSubtitle = document.querySelector('.hero-subtitle');
 if (heroSubtitle) {
     const originalText = heroSubtitle.textContent;
@@ -232,7 +199,6 @@ if (heroSubtitle) {
         }
     };
 
-    // Start typing after page load
     setTimeout(typeWriter, 500);
 }
 
@@ -287,12 +253,10 @@ const bookingPlaceholder = document.getElementById('bookingPlaceholder');
 
 if (calcomEmbed) {
     const calSrc = calcomEmbed.getAttribute('src');
-    // Show placeholder if Cal.com username hasn't been set yet
     if (calSrc.includes('TWOJ-USERNAME')) {
         calcomEmbed.style.display = 'none';
         bookingPlaceholder.classList.add('active');
     } else {
-        // Handle iframe load error
         calcomEmbed.addEventListener('error', () => {
             calcomEmbed.style.display = 'none';
             bookingPlaceholder.classList.add('active');
@@ -307,44 +271,44 @@ const cookieBanner = document.getElementById('cookieBanner');
 const cookieAccept = document.getElementById('cookieAccept');
 const cookieReject = document.getElementById('cookieReject');
 
-// Show cookie banner if no consent stored
-if (!localStorage.getItem('cookieConsent')) {
+if (cookieBanner && !localStorage.getItem('cookieConsent')) {
     setTimeout(() => {
         cookieBanner.classList.add('show');
     }, 1000);
 }
 
-// Accept cookies
-cookieAccept.addEventListener('click', () => {
-    localStorage.setItem('cookieConsent', 'accepted');
-    cookieBanner.classList.remove('show');
-    // Load Google Analytics
-    if (typeof loadGoogleAnalytics === 'function') {
-        loadGoogleAnalytics();
-    }
-});
+if (cookieAccept) {
+    cookieAccept.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        cookieBanner.classList.remove('show');
+        if (typeof loadGoogleAnalytics === 'function') {
+            loadGoogleAnalytics();
+        }
+    });
+}
 
-// Reject cookies
-cookieReject.addEventListener('click', () => {
-    localStorage.setItem('cookieConsent', 'rejected');
-    cookieBanner.classList.remove('show');
-});
+if (cookieReject) {
+    cookieReject.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'rejected');
+        cookieBanner.classList.remove('show');
+    });
+}
 
 // Privacy Policy Modal
 const privacyModal = document.getElementById('privacyModal');
 const privacyLinks = document.querySelectorAll('.privacy-link, a[href="#privacy"]');
 const privacyClose = document.querySelector('.privacy-close');
 
-// Open privacy modal
 privacyLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        privacyModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        if (privacyModal) {
+            privacyModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
     });
 });
 
-// Close privacy modal
 if (privacyClose) {
     privacyClose.addEventListener('click', () => {
         privacyModal.classList.remove('active');
@@ -352,114 +316,116 @@ if (privacyClose) {
     });
 }
 
-// Close privacy modal when clicking outside
-privacyModal.addEventListener('click', (e) => {
-    if (e.target === privacyModal) {
-        privacyModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-});
+if (privacyModal) {
+    privacyModal.addEventListener('click', (e) => {
+        if (e.target === privacyModal) {
+            privacyModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
 
-// Close privacy modal with ESC key
+// Close modals with ESC key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && privacyModal.classList.contains('active')) {
-        privacyModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
+    if (e.key === 'Escape') {
+        if (privacyModal && privacyModal.classList.contains('active')) {
+            privacyModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        const orderModal = document.getElementById('orderModal');
+        if (orderModal && orderModal.classList.contains('active')) {
+            orderModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            const orderForm = document.getElementById('orderForm');
+            if (orderForm) orderForm.reset();
+            const orderFormStatus = document.getElementById('orderFormStatus');
+            if (orderFormStatus) orderFormStatus.style.display = 'none';
+        }
     }
 });
 
-// Order Modal Functionality
+// Order Modal Functionality - only on pages with order modal
 const orderModal = document.getElementById('orderModal');
 const orderButtons = document.querySelectorAll('.btn-order');
-const modalClose = document.querySelector('.modal-close');
+const modalClose = document.querySelector('.modal-close:not(.privacy-close)');
 const orderForm = document.getElementById('orderForm');
 const orderFormStatus = document.getElementById('orderFormStatus');
 
-// Open modal when clicking "Zamów" button
-orderButtons.forEach(button => {
-    button.addEventListener('click', function(e) {
-        e.preventDefault();
-        const serviceName = this.getAttribute('data-service');
-        const servicePrice = this.getAttribute('data-price');
+if (orderModal && orderButtons.length > 0) {
+    orderButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const serviceName = this.getAttribute('data-service');
+            const servicePrice = this.getAttribute('data-price');
 
-        // Update modal content
-        document.getElementById('modalServiceName').textContent = serviceName;
-        document.getElementById('modalServicePrice').textContent = servicePrice;
-        document.getElementById('selectedService').value = serviceName;
+            document.getElementById('modalServiceName').textContent = serviceName;
+            document.getElementById('modalServicePrice').textContent = servicePrice;
+            document.getElementById('selectedService').value = serviceName;
 
-        // Show modal
-        orderModal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            orderModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
     });
-});
 
-// Close modal
-const closeModal = () => {
-    orderModal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-    orderForm.reset();
-    orderFormStatus.style.display = 'none';
-};
+    const closeModal = () => {
+        orderModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        if (orderForm) orderForm.reset();
+        if (orderFormStatus) orderFormStatus.style.display = 'none';
+    };
 
-modalClose.addEventListener('click', closeModal);
-
-// Close modal when clicking outside
-orderModal.addEventListener('click', function(e) {
-    if (e.target === orderModal) {
-        closeModal();
+    if (modalClose) {
+        modalClose.addEventListener('click', closeModal);
     }
-});
 
-// Close modal with ESC key
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && orderModal.classList.contains('active')) {
-        closeModal();
-    }
-});
+    orderModal.addEventListener('click', function(e) {
+        if (e.target === orderModal) {
+            closeModal();
+        }
+    });
 
-// Handle order form submission (Getform)
-orderForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
+    if (orderForm) {
+        orderForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
 
-    const formData = new FormData(orderForm);
-    const submitButton = orderForm.querySelector('button[type="submit"]');
-    const originalButtonText = submitButton.textContent;
+            const formData = new FormData(orderForm);
+            const submitButton = orderForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
 
-    // Add subject with service name
-    formData.set('subject', `Zamówienie: ${formData.get('service')}`);
+            formData.set('subject', `Zamówienie: ${formData.get('service')}`);
 
-    // Disable button
-    submitButton.disabled = true;
-    submitButton.textContent = 'Wysyłanie...';
+            submitButton.disabled = true;
+            submitButton.textContent = 'Wysyłanie...';
 
-    try {
-        const response = await fetch(orderForm.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
+            try {
+                const response = await fetch(orderForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    orderFormStatus.className = 'form-status success';
+                    orderFormStatus.textContent = '✓ Dziękuję! Skontaktuję się z Tobą jak najszybciej.';
+                    orderFormStatus.style.display = 'block';
+                    orderForm.reset();
+
+                    setTimeout(() => {
+                        closeModal();
+                    }, 3000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                orderFormStatus.className = 'form-status error';
+                orderFormStatus.textContent = '✗ Wystąpił błąd. Spróbuj zadzwonić: +48 535 035 761';
+                orderFormStatus.style.display = 'block';
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
             }
         });
-
-        if (response.ok) {
-            orderFormStatus.className = 'form-status success';
-            orderFormStatus.textContent = '✓ Dziękuję! Skontaktuję się z Tobą jak najszybciej.';
-            orderFormStatus.style.display = 'block';
-            orderForm.reset();
-
-            // Close modal after 3 seconds
-            setTimeout(() => {
-                closeModal();
-            }, 3000);
-        } else {
-            throw new Error('Form submission failed');
-        }
-    } catch (error) {
-        orderFormStatus.className = 'form-status error';
-        orderFormStatus.textContent = '✗ Wystąpił błąd. Spróbuj zadzwonić: +48 535 035 761';
-        orderFormStatus.style.display = 'block';
-    } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
     }
-});
+}

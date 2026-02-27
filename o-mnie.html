@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dawid Saworski - specjalista IT z 10-letnim doświadczeniem. Pomoc techniczna w Toruniu i okolicach.">
+    <title>O mnie - Usługi IT Dawid Saworski | Toruń</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Analytics - ładowane tylko po zgodzie na cookies -->
+    <script>
+      function loadGoogleAnalytics() {
+        if (localStorage.getItem('cookieConsent') === 'accepted') {
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-JLGYMVFPQQ';
+          document.head.appendChild(script);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-JLGYMVFPQQ');
+        }
+      }
+      if (localStorage.getItem('cookieConsent') === 'accepted') {
+        loadGoogleAnalytics();
+      }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:10px">
+                    <span class="logo">💻</span>
+                    <span class="brand-name">Usługi IT - Dawid Saworski</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="o-mnie.html" class="active">O mnie</a></li>
+                <li><a href="uslugi.html">Usługi</a></li>
+                <li><a href="index.html#booking">Rezerwacja</a></li>
+                <li><a href="index.html#contact">Kontakt</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>O mnie</h1>
+            <p>Doświadczenie, któremu możesz zaufać</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-photo">
+                    <img src="dawid-saworski.jpg" alt="Dawid Saworski - Specjalista IT" class="profile-photo">
+                </div>
+                <div class="about-text">
+                    <h3>Dawid Saworski</h3>
+                    <p>Od 10 lat pracuję na co dzień ze sprzętem, gdzie codziennie pomagam klientom w kwestiach technicznych. Jako samouk pasjonujący się technologią, zdobyłem szeroką wiedzę w zakresie:</p>
+                    <ul class="about-list">
+                        <li><strong>Systemy Windows:</strong> instalacja, naprawa, usuwanie wirusów, optymalizacja</li>
+                        <li><strong>Smartfony:</strong> konfiguracja, transfer danych, szkolenia</li>
+                        <li><strong>Sieci i urządzenia:</strong> drukarki, routery, kamery domowe</li>
+                        <li><strong>Dobór sprzętu:</strong> pomoc w wyborze komputerów i podzespołów</li>
+                    </ul>
+                    <p class="about-highlight">Moja przewaga? Tłumaczę skomplikowane rzeczy prostym językiem i pomagam dopóki problem nie zostanie rozwiązany.</p>
+                </div>
+                <div class="about-stats-inline">
+                    <span class="stat-inline"><strong>10+</strong> lat doświadczenia</span>
+                    <span class="stat-separator">•</span>
+                    <span class="stat-inline"><strong>100%</strong> zadowolonych klientów</span>
+                    <span class="stat-separator">•</span>
+                    <span class="stat-inline"><strong>0 zł</strong> za dojazd</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container" style="text-align:center">
+            <h2 class="section-title">Potrzebujesz pomocy IT?</h2>
+            <p class="section-subtitle">Sprawdź ofertę lub zarezerwuj wizytę</p>
+            <div class="hero-buttons" style="margin-top:2rem">
+                <a href="uslugi.html" class="btn btn-primary">Zobacz usługi i cennik</a>
+                <a href="index.html#booking" class="btn btn-secondary" style="border-color:var(--primary-color);color:var(--primary-color)">Zarezerwuj wizytę</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Usługi IT - Dawid Saworski</h4>
+                    <p>Profesjonalna pomoc techniczna w Twoim domu</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Szybkie linki</h4>
+                    <ul>
+                        <li><a href="o-mnie.html">O mnie</a></li>
+                        <li><a href="uslugi.html">Usługi</a></li>
+                        <li><a href="index.html#booking">Rezerwacja</a></li>
+                        <li><a href="index.html#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Kontakt</h4>
+                    <p>Email: saworski.uslugi@gmail.com</p>
+                    <p>Tel: +48 535 035 761</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Usługi IT - Dawid Saworski. Wszystkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/48535035761" target="_blank" class="whatsapp-float" title="Napisz na WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </a>
+
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-content">
+            <p>Ta strona używa plików cookies (Google Analytics) do analizy ruchu. Czy wyrażasz zgodę?</p>
+            <div class="cookie-buttons">
+                <button id="cookieAccept" class="btn btn-primary btn-small">Akceptuję</button>
+                <button id="cookieReject" class="btn btn-secondary btn-small">Odrzucam</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content modal-large">
+            <span class="modal-close privacy-close">&times;</span>
+            <h2 class="modal-title">Polityka Prywatności</h2>
+
+            <div class="privacy-content">
+                <h3>1. Administrator danych</h3>
+                <p>Administratorem Twoich danych osobowych jest <strong>Dawid Saworski</strong>, prowadzący działalność nierejestrowaną pod nazwą "Usługi IT - Dawid Saworski".</p>
+                <p>Kontakt: <strong>+48 535 035 761</strong>, email: <strong>saworski.uslugi@gmail.com</strong></p>
+
+                <h3>2. Jakie dane zbieram i w jakim celu</h3>
+                <p>Zbieram następujące dane poprzez formularze kontaktowe:</p>
+                <ul>
+                    <li><strong>Imię i nazwisko</strong> - w celu identyfikacji i personalizacji kontaktu</li>
+                    <li><strong>Adres email</strong> - w celu odpowiedzi na zapytanie</li>
+                    <li><strong>Numer telefonu</strong> - w celu umówienia wizyty</li>
+                    <li><strong>Treść wiadomości</strong> - w celu zrozumienia potrzeb i przygotowania oferty</li>
+                </ul>
+                <p><strong>Cel:</strong> Kontakt z Klientem w celu umówienia się na wizytę w miejscu wyznaczonym przez Klienta.</p>
+
+                <h3>3. Jak długo przechowuję dane</h3>
+                <p>Twoje dane osobowe przechowuję przez okres:</p>
+                <ul>
+                    <li><strong>Zapytania kontaktowe:</strong> do 12 miesięcy od ostatniego kontaktu</li>
+                    <li><strong>Dane klientów (zrealizowane usługi):</strong> do 5 lat dla celów podatkowych</li>
+                    <li><strong>Po tym czasie dane są trwale usuwane</strong></li>
+                </ul>
+
+                <h3>4. Twoje prawa (RODO)</h3>
+                <p>Masz prawo do:</p>
+                <ul>
+                    <li><strong>Dostępu</strong> - możesz zapytać jakie dane o Tobie posiadam</li>
+                    <li><strong>Sprostowania</strong> - możesz poprosić o poprawienie nieprawidłowych danych</li>
+                    <li><strong>Usunięcia</strong> - możesz zażądać usunięcia swoich danych ("prawo do bycia zapomnianym")</li>
+                    <li><strong>Sprzeciwu</strong> - możesz sprzeciwić się przetwarzaniu danych</li>
+                    <li><strong>Przenoszenia</strong> - możesz otrzymać swoje dane w formacie elektronicznym</li>
+                </ul>
+                <p>Aby skorzystać z tych praw, skontaktuj się ze mną: <strong>+48 535 035 761</strong> lub <strong>saworski.uslugi@gmail.com</strong></p>
+
+                <h3>5. System rezerwacji Cal.com</h3>
+                <p>Do obsługi rezerwacji wizyt korzystam z platformy <strong>Cal.com</strong>. Przy rezerwacji wizyty Cal.com przetwarza Twoje dane (imię, email) w celu umówienia i potwierdzenia wizyty. Dane te podlegają <a href="https://cal.com/privacy" target="_blank">polityce prywatności Cal.com</a>.</p>
+
+                <h3>6. Google Analytics</h3>
+                <p>Strona korzysta z Google Analytics do analizy ruchu. Usługa ta używa plików cookies. Dane są anonimizowane i służą wyłącznie do celów statystycznych (np. liczba odwiedzin strony).</p>
+                <p>Google Analytics jest ładowany <strong>tylko po Twojej zgodzie</strong> (baner cookies).</p>
+                <p>Możesz zarządzać cookies w ustawieniach przeglądarki lub zainstalować <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">dodatek blokujący Google Analytics</a>.</p>
+
+                <h3>7. Bezpieczeństwo danych</h3>
+                <p>Twoje dane są przesyłane przez zabezpieczone połączenie (HTTPS) i przechowywane z zachowaniem odpowiednich środków bezpieczeństwa.</p>
+
+                <h3>8. Kontakt</h3>
+                <p>W sprawach dotyczących ochrony danych osobowych możesz się ze mną skontaktować:</p>
+                <ul>
+                    <li>Telefon: <strong>+48 535 035 761</strong></li>
+                    <li>Email: <strong>saworski.uslugi@gmail.com</strong></li>
+                </ul>
+
+                <p class="privacy-date"><em>Data ostatniej aktualizacji: luty 2026</em></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
