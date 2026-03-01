@@ -63,6 +63,14 @@ body {
     color: var(--secondary-color);
 }
 
+.nav-brand a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .logo {
     font-size: 2rem;
 }
@@ -163,6 +171,27 @@ body {
 .cta-section {
     padding: 60px 0;
     background: var(--bg-light);
+    text-align: center;
+}
+
+.cta-section .hero-buttons {
+    margin-top: 2rem;
+}
+
+.btn-outline {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-block {
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.modal-calendar-link {
+    text-align: center;
+    padding: 1rem 0;
 }
 
 /* Hero Section */
@@ -1557,5 +1586,17 @@ section {
     .whatsapp-float svg {
         width: 26px;
         height: 26px;
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }

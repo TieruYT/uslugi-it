@@ -6,6 +6,21 @@
     <meta name="description" content="Dawid Saworski - specjalista IT z 10-letnim doświadczeniem. Pomoc techniczna w Toruniu i okolicach.">
     <title>O mnie - Usługi IT Dawid Saworski | Toruń</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://saworski-it.pl/o-mnie.html">
+    <meta property="og:title" content="O mnie - Dawid Saworski | Specjalista IT Toruń">
+    <meta property="og:description" content="10+ lat doświadczenia w IT. Pomoc techniczna w Toruniu i okolicach. Dojazd gratis!">
+    <meta property="og:image" content="https://saworski-it.pl/og-image.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="O mnie - Dawid Saworski | Specjalista IT Toruń">
+    <meta name="twitter:description" content="10+ lat doświadczenia w IT. Pomoc techniczna w Toruniu i okolicach. Dojazd gratis!">
+    <meta name="twitter:image" content="https://saworski-it.pl/og-image.jpg">
+
+    <link rel="canonical" href="https://saworski-it.pl/o-mnie.html">
     <link rel="stylesheet" href="styles.css">
 
     <!-- Google Analytics - ładowane tylko po zgodzie na cookies -->
@@ -34,7 +49,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
-                <a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:10px">
+                <a href="index.html">
                     <span class="logo">💻</span>
                     <span class="brand-name">Usługi IT - Dawid Saworski</span>
                 </a>
@@ -46,7 +61,7 @@
                 <li><a href="index.html#booking">Rezerwacja</a></li>
                 <li><a href="index.html#contact">Kontakt</a></li>
             </ul>
-            <div class="menu-toggle">
+            <div class="menu-toggle" role="button" aria-label="Menu nawigacyjne" aria-expanded="false" tabindex="0">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -93,12 +108,12 @@
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <div class="container" style="text-align:center">
+        <div class="container">
             <h2 class="section-title">Potrzebujesz pomocy IT?</h2>
             <p class="section-subtitle">Sprawdź ofertę lub zarezerwuj wizytę</p>
-            <div class="hero-buttons" style="margin-top:2rem">
+            <div class="hero-buttons">
                 <a href="uslugi.html" class="btn btn-primary">Zobacz usługi i cennik</a>
-                <a href="index.html#booking" class="btn btn-secondary" style="border-color:var(--primary-color);color:var(--primary-color)">Zarezerwuj wizytę</a>
+                <a href="index.html#booking" class="btn btn-secondary btn-outline">Zarezerwuj wizytę</a>
             </div>
         </div>
     </section>

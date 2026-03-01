@@ -4,10 +4,12 @@ const navMenu = document.querySelector('.nav-menu');
 
 menuToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
+    const isOpen = navMenu.classList.contains('active');
+    menuToggle.setAttribute('aria-expanded', isOpen);
 
     // Animate hamburger menu
     const spans = menuToggle.querySelectorAll('span');
-    if (navMenu.classList.contains('active')) {
+    if (isOpen) {
         spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
         spans[1].style.opacity = '0';
         spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
@@ -22,6 +24,7 @@ menuToggle.addEventListener('click', () => {
 document.querySelectorAll('.nav-menu a').forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
         const spans = menuToggle.querySelectorAll('span');
         spans[0].style.transform = 'none';
         spans[1].style.opacity = '1';
