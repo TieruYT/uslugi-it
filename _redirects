@@ -1,0 +1,8 @@
+# Block private/backup files from public access
+/index_backup.html    /404.html   404
+/wizytowka_szablon.html    /404.html   404
+/wizytowki.html    /404.html   404
+/ASPEKTY_PRAWNE.md    /404.html   404
+/TODO_PRZED_STARTEM.md    /404.html   404
+/INSTRUKCJA_CAL_COM.md    /404.html   404
+/README.md    /404.html   404

@@ -264,8 +264,6 @@ if (calcomEmbed) {
     }
 }
 
-console.log('🚀 Website loaded successfully!');
-
 // Cookie Banner Functionality
 const cookieBanner = document.getElementById('cookieBanner');
 const cookieAccept = document.getElementById('cookieAccept');
@@ -294,44 +292,9 @@ if (cookieReject) {
     });
 }
 
-// Privacy Policy Modal
-const privacyModal = document.getElementById('privacyModal');
-const privacyLinks = document.querySelectorAll('.privacy-link, a[href="#privacy"]');
-const privacyClose = document.querySelector('.privacy-close');
-
-privacyLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (privacyModal) {
-            privacyModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-    });
-});
-
-if (privacyClose) {
-    privacyClose.addEventListener('click', () => {
-        privacyModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    });
-}
-
-if (privacyModal) {
-    privacyModal.addEventListener('click', (e) => {
-        if (e.target === privacyModal) {
-            privacyModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-}
-
 // Close modals with ESC key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        if (privacyModal && privacyModal.classList.contains('active')) {
-            privacyModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
         const orderModal = document.getElementById('orderModal');
         if (orderModal && orderModal.classList.contains('active')) {
             orderModal.classList.remove('active');

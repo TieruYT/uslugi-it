@@ -1471,6 +1471,17 @@ section {
     padding-right: 1rem;
 }
 
+.privacy-page .privacy-content {
+    max-height: none;
+    overflow-y: visible;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.privacy-page {
+    padding: 50px 0 80px;
+}
+
 .privacy-content h3 {
     color: var(--secondary-color);
     margin-top: 1.5rem;

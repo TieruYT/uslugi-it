@@ -5,7 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Profesjonalne usługi IT - Dawid Saworski - konfiguracja komputerów, smartfonów, drukarek i pomocy technicznej w Toruniu i okolicach">
     <title>Usługi IT - Dawid Saworski | Toruń</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Usługi IT - Dawid Saworski",
+        "description": "Profesjonalne usługi IT - konfiguracja komputerów, smartfonów, drukarek i pomoc techniczna w Toruniu i okolicach",
+        "telephone": "+48535035761",
+        "email": "saworski.uslugi@gmail.com",
+        "url": "https://saworski-it.pl",
+        "areaServed": {
+            "@type": "City",
+            "name": "Toruń"
+        },
+        "priceRange": "100-300 PLN",
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+                "opens": "18:30",
+                "closes": "20:30"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "15:30",
+                "closes": "20:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Sunday",
+                "opens": "12:00",
+                "closes": "20:00"
+            }
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Usługi IT",
+            "itemListElement": [
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Korepetycje (smartfon/komputer)"}, "price": "100", "priceCurrency": "PLN"},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Nowy telefon - transfer danych"}, "price": "120", "priceCurrency": "PLN"},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Serwis komputera"}, "price": "150", "priceCurrency": "PLN"},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Konfiguracja urządzeń"}, "price": "150", "priceCurrency": "PLN"},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kamery domowe"}, "price": "250", "priceCurrency": "PLN"},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pakiet kompleksowy"}, "price": "300", "priceCurrency": "PLN"}
+            ]
+        }
+    }
+    </script>
 
     <!-- Google Analytics - ładowane tylko po zgodzie na cookies -->
     <script>
@@ -128,7 +179,7 @@
                         <p>W międzyczasie umów się telefonicznie lub przez WhatsApp:</p>
                         <div class="booking-placeholder-buttons">
                             <a href="tel:+48535035761" class="btn btn-primary">📞 +48 535 035 761</a>
-                            <a href="https://wa.me/48535035761" target="_blank" class="btn btn-whatsapp">💬 WhatsApp</a>
+                            <a href="https://wa.me/48535035761" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">💬 WhatsApp</a>
                         </div>
                     </div>
                 </div>
@@ -182,7 +233,7 @@
                         <div class="contact-icon">💬</div>
                         <div>
                             <strong>WhatsApp</strong>
-                            <p><a href="https://wa.me/48535035761" target="_blank">Napisz na WhatsApp</a></p>
+                            <p><a href="https://wa.me/48535035761" target="_blank" rel="noopener noreferrer">Napisz na WhatsApp</a></p>
                         </div>
                     </div>
                 </div>
@@ -223,7 +274,7 @@
                         <div class="form-group checkbox-group">
                             <label class="checkbox-label">
                                 <input type="checkbox" name="consent" required>
-                                <span>Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na zapytanie. <a href="#privacy" class="privacy-link">Polityka prywatności</a></span>
+                                <span>Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na zapytanie. <a href="polityka-prywatnosci.html" target="_blank" rel="noopener noreferrer">Polityka prywatności</a></span>
                             </label>
                         </div>
                         <button type="submit" class="btn btn-primary">Wyślij zapytanie</button>
@@ -258,13 +309,13 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Usługi IT - Dawid Saworski. Wszystkie prawa zastrzeżone.</p>
+                <p>&copy; 2026 Usługi IT - Dawid Saworski. Wszystkie prawa zastrzeżone.</p>
             </div>
         </div>
     </footer>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/48535035761" target="_blank" class="whatsapp-float" title="Napisz na WhatsApp">
+    <a href="https://wa.me/48535035761" target="_blank" rel="noopener noreferrer" class="whatsapp-float" title="Napisz na WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
             <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
         </svg>
@@ -281,69 +332,7 @@
         </div>
     </div>
 
-    <!-- Privacy Policy Modal -->
-    <div id="privacyModal" class="modal">
-        <div class="modal-content modal-large">
-            <span class="modal-close privacy-close">&times;</span>
-            <h2 class="modal-title">Polityka Prywatności</h2>
-
-            <div class="privacy-content">
-                <h3>1. Administrator danych</h3>
-                <p>Administratorem Twoich danych osobowych jest <strong>Dawid Saworski</strong>, prowadzący działalność nierejestrowaną pod nazwą "Usługi IT - Dawid Saworski".</p>
-                <p>Kontakt: <strong>+48 535 035 761</strong>, email: <strong>saworski.uslugi@gmail.com</strong></p>
-
-                <h3>2. Jakie dane zbieram i w jakim celu</h3>
-                <p>Zbieram następujące dane poprzez formularze kontaktowe:</p>
-                <ul>
-                    <li><strong>Imię i nazwisko</strong> - w celu identyfikacji i personalizacji kontaktu</li>
-                    <li><strong>Adres email</strong> - w celu odpowiedzi na zapytanie</li>
-                    <li><strong>Numer telefonu</strong> - w celu umówienia wizyty</li>
-                    <li><strong>Treść wiadomości</strong> - w celu zrozumienia potrzeb i przygotowania oferty</li>
-                </ul>
-                <p><strong>Cel:</strong> Kontakt z Klientem w celu umówienia się na wizytę w miejscu wyznaczonym przez Klienta.</p>
-
-                <h3>3. Jak długo przechowuję dane</h3>
-                <p>Twoje dane osobowe przechowuję przez okres:</p>
-                <ul>
-                    <li><strong>Zapytania kontaktowe:</strong> do 12 miesięcy od ostatniego kontaktu</li>
-                    <li><strong>Dane klientów (zrealizowane usługi):</strong> do 5 lat dla celów podatkowych</li>
-                    <li><strong>Po tym czasie dane są trwale usuwane</strong></li>
-                </ul>
-
-                <h3>4. Twoje prawa (RODO)</h3>
-                <p>Masz prawo do:</p>
-                <ul>
-                    <li><strong>Dostępu</strong> - możesz zapytać jakie dane o Tobie posiadam</li>
-                    <li><strong>Sprostowania</strong> - możesz poprosić o poprawienie nieprawidłowych danych</li>
-                    <li><strong>Usunięcia</strong> - możesz zażądać usunięcia swoich danych ("prawo do bycia zapomnianym")</li>
-                    <li><strong>Sprzeciwu</strong> - możesz sprzeciwić się przetwarzaniu danych</li>
-                    <li><strong>Przenoszenia</strong> - możesz otrzymać swoje dane w formacie elektronicznym</li>
-                </ul>
-                <p>Aby skorzystać z tych praw, skontaktuj się ze mną: <strong>+48 535 035 761</strong> lub <strong>saworski.uslugi@gmail.com</strong></p>
-
-                <h3>5. System rezerwacji Cal.com</h3>
-                <p>Do obsługi rezerwacji wizyt korzystam z platformy <strong>Cal.com</strong>. Przy rezerwacji wizyty Cal.com przetwarza Twoje dane (imię, email) w celu umówienia i potwierdzenia wizyty. Dane te podlegają <a href="https://cal.com/privacy" target="_blank">polityce prywatności Cal.com</a>.</p>
-
-                <h3>6. Google Analytics</h3>
-                <p>Strona korzysta z Google Analytics do analizy ruchu. Usługa ta używa plików cookies. Dane są anonimizowane i służą wyłącznie do celów statystycznych (np. liczba odwiedzin strony).</p>
-                <p>Google Analytics jest ładowany <strong>tylko po Twojej zgodzie</strong> (baner cookies).</p>
-                <p>Możesz zarządzać cookies w ustawieniach przeglądarki lub zainstalować <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">dodatek blokujący Google Analytics</a>.</p>
-
-                <h3>7. Bezpieczeństwo danych</h3>
-                <p>Twoje dane są przesyłane przez zabezpieczone połączenie (HTTPS) i przechowywane z zachowaniem odpowiednich środków bezpieczeństwa.</p>
-
-                <h3>8. Kontakt</h3>
-                <p>W sprawach dotyczących ochrony danych osobowych możesz się ze mną skontaktować:</p>
-                <ul>
-                    <li>Telefon: <strong>+48 535 035 761</strong></li>
-                    <li>Email: <strong>saworski.uslugi@gmail.com</strong></li>
-                </ul>
-
-                <p class="privacy-date"><em>Data ostatniej aktualizacji: luty 2026</em></p>
-            </div>
-        </div>
-    </div>
-
+    <noscript><style>section{opacity:1!important;transform:none!important}</style></noscript>
     <script src="script.js"></script>
 </body>
 </html>
