@@ -36,6 +36,52 @@ body {
     padding: 0 20px;
 }
 
+/* Promo Banner */
+.promo-banner {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--primary-color);
+    color: white;
+    z-index: 1100;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.promo-banner-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8px 50px 8px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.promo-banner-close {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.3rem;
+    cursor: pointer;
+    opacity: 0.8;
+    line-height: 1;
+}
+
+.promo-banner-close:hover { opacity: 1; }
+
+/* Push navbar down when promo banner is visible */
+body.has-promo .navbar {
+    top: 36px;
+}
+
+body.has-promo .hero,
+body.has-promo .page-header {
+    margin-top: 36px;
+}
+
 /* Navigation */
 .navbar {
     position: fixed;

@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Panel Administracyjny - Uslugi IT</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #FF7900;
+            --primary-dark: #E66A00;
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --bg-input: #334155;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --border: #475569;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* Login */
+        .login-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .login-box {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .login-box h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .login-box p { color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem; }
+
+        /* Dashboard */
+        .dashboard { display: none; }
+        .top-bar {
+            background: var(--bg-card);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .top-bar h1 { font-size: 1.2rem; }
+        .btn-logout {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 6px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .btn-logout:hover { border-color: var(--danger); color: var(--danger); }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            overflow-x: auto;
+        }
+        .tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .tab:hover { color: var(--text); }
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        /* Content */
+        .content { padding: 2rem; max-width: 1000px; margin: 0 auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+        }
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Forms */
+        label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+        }
+        input[type="text"], input[type="number"], input[type="email"],
+        input[type="password"], input[type="date"], textarea, select {
+            width: 100%;
+            padding: 10px 14px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        textarea { resize: vertical; min-height: 60px; }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-success { background: var(--success); color: white; }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-secondary { background: var(--bg-input); color: var(--text); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Toggle Switch */
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+        }
+        .toggle-label { font-weight: 600; }
+        .toggle {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+        .toggle input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider {
+            position: absolute;
+            inset: 0;
+            background: var(--bg-input);
+            border-radius: 26px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .toggle-slider:before {
+            content: "";
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .toggle input:checked + .toggle-slider { background: var(--success); }
+        .toggle input:checked + .toggle-slider:before { transform: translateX(24px); }
+
+        /* Price grid */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .price-card {
+            background: var(--bg-input);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .price-card h4 { margin-bottom: 0.75rem; font-size: 1rem; }
+        .price-row {
+            display: flex;
+            gap: 0.5rem;
+            align-items: end;
+        }
+        .price-row .field { flex: 1; }
+        .price-row .field-small { width: 80px; }
+
+        /* Booking list */
+        .booking-item {
+            background: var(--bg-input);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .booking-info strong { display: block; }
+        .booking-info span { color: var(--text-muted); font-size: 0.85rem; }
+        .booking-status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .status-pending { background: #fbbf24; color: #000; }
+        .status-accepted { background: var(--success); color: #fff; }
+        .status-cancelled { background: var(--danger); color: #fff; }
+
+        /* Stats cards */
+        .stats-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--bg-input);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.2s;
+            margin-bottom: 1rem;
+        }
+        .stats-link:hover { background: var(--border); }
+        .stats-icon { font-size: 2rem; }
+        .stats-label { font-weight: 600; }
+        .stats-desc { color: var(--text-muted); font-size: 0.85rem; }
+
+        /* Day off */
+        .dayoff-list { margin-top: 1rem; }
+        .dayoff-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .btn-remove {
+            background: none;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Status messages */
+        .msg {
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+        .msg-success { background: rgba(34,197,94,0.15); color: var(--success); display: block; }
+        .msg-error { background: rgba(239,68,68,0.15); color: var(--danger); display: block; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content { padding: 1rem; }
+            .tabs { padding: 0 1rem; }
+            .top-bar { padding: 1rem; }
+            .price-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-box">
+            <h1>Panel Admina</h1>
+            <p>Uslugi IT - Dawid Saworski</p>
+            <div id="loginMsg" class="msg"></div>
+            <input type="email" id="loginEmail" placeholder="Email">
+            <input type="password" id="loginPassword" placeholder="Haslo">
+            <button class="btn btn-primary" style="width:100%" onclick="doLogin()">Zaloguj sie</button>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard">
+        <div class="top-bar">
+            <h1>Panel Administracyjny</h1>
+            <div>
+                <span id="userEmail" style="color:var(--text-muted);font-size:0.85rem;margin-right:1rem"></span>
+                <button class="btn-logout" onclick="doLogout()">Wyloguj</button>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('stats')">Statystyki</div>
+            <div class="tab" onclick="switchTab('promo')">Promocje</div>
+            <div class="tab" onclick="switchTab('prices')">Cennik</div>
+            <div class="tab" onclick="switchTab('calcom')">Dostepnosc</div>
+        </div>
+
+        <div class="content">
+            <!-- Stats Tab -->
+            <div id="tab-stats" class="tab-content active">
+                <h2 style="margin-bottom:1.5rem">Statystyki strony</h2>
+
+                <a href="https://analytics.google.com/analytics/web/#/p/G-JLGYMVFPQQ" target="_blank" rel="noopener noreferrer" class="stats-link">
+                    <div class="stats-icon">📊</div>
+                    <div>
+                        <div class="stats-label">Google Analytics</div>
+                        <div class="stats-desc">Pelne statystyki: odwiedziny, zrodla ruchu, popularne strony</div>
+                    </div>
+                </a>
+
+                <a href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer" class="stats-link">
+                    <div class="stats-icon">🔍</div>
+                    <div>
+                        <div class="stats-label">Google Search Console</div>
+                        <div class="stats-desc">Pozycja w Google, klikniecia, zapytania uzytkownikow</div>
+                    </div>
+                </a>
+
+                <a href="https://app.cal.com/bookings/upcoming" target="_blank" rel="noopener noreferrer" class="stats-link">
+                    <div class="stats-icon">📅</div>
+                    <div>
+                        <div class="stats-label">Cal.com - Rezerwacje</div>
+                        <div class="stats-desc">Nadchodzace wizyty, zatwierdzanie rezerwacji</div>
+                    </div>
+                </a>
+
+                <a href="https://app.netlify.com" target="_blank" rel="noopener noreferrer" class="stats-link">
+                    <div class="stats-icon">🌐</div>
+                    <div>
+                        <div class="stats-label">Netlify</div>
+                        <div class="stats-desc">Status strony, deploymenty, uzycie bandwidth</div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Promo Tab -->
+            <div id="tab-promo" class="tab-content">
+                <h2 style="margin-bottom:1.5rem">Baner promocyjny</h2>
+
+                <div class="card">
+                    <h3>Ustawienia promocji</h3>
+                    <div id="promoMsg" class="msg"></div>
+
+                    <div class="toggle-row">
+                        <span class="toggle-label">Promocja aktywna</span>
+                        <label class="toggle">
+                            <input type="checkbox" id="promoActive">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <label>Tekst promocji</label>
+                    <input type="text" id="promoText" placeholder="np. -20% na serwis komputera do konca tygodnia!">
+
+                    <label>Link w banerze (opcjonalnie)</label>
+                    <input type="text" id="promoLink" placeholder="np. uslugi.html lub index.html#booking">
+
+                    <label>Kolor tla banera</label>
+                    <select id="promoColor">
+                        <option value="orange">Pomaranczowy (domyslny)</option>
+                        <option value="green">Zielony (super okazja)</option>
+                        <option value="blue">Niebieski (informacja)</option>
+                        <option value="red">Czerwony (ostatnia szansa)</option>
+                    </select>
+
+                    <label>Wazna do (opcjonalnie)</label>
+                    <input type="date" id="promoExpiry">
+
+                    <button class="btn btn-primary" onclick="savePromo()">Zapisz promocje</button>
+                </div>
+
+                <div class="card">
+                    <h3>Podglad</h3>
+                    <div id="promoPreview" style="padding:12px 20px;border-radius:8px;text-align:center;font-weight:600;background:var(--primary);color:white">
+                        Tutaj pojawi sie podglad banera
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prices Tab -->
+            <div id="tab-prices" class="tab-content">
+                <h2 style="margin-bottom:1.5rem">Cennik uslug</h2>
+                <div id="pricesMsg" class="msg"></div>
+
+                <div class="price-grid" id="priceGrid">
+                    <!-- Generated dynamically -->
+                </div>
+
+                <button class="btn btn-primary" onclick="savePrices()" style="margin-top:1rem">Zapisz zmiany w cenniku</button>
+                <p style="color:var(--text-muted);font-size:0.85rem;margin-top:0.5rem">Zmiany pojawia sie na stronie natychmiast. Ceny w Cal.com zostana tez zaktualizowane.</p>
+            </div>
+
+            <!-- Cal.com Tab -->
+            <div id="tab-calcom" class="tab-content">
+                <h2 style="margin-bottom:1.5rem">Zarzadzanie dostepnoscia</h2>
+
+                <div class="card">
+                    <h3>Nadchodzace rezerwacje</h3>
+                    <div id="bookingsList">
+                        <p style="color:var(--text-muted)">Ladowanie...</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Dodaj dzien wolny</h3>
+                    <div id="dayoffMsg" class="msg"></div>
+                    <label>Data</label>
+                    <input type="date" id="dayoffDate">
+                    <label>Powod (opcjonalnie)</label>
+                    <input type="text" id="dayoffReason" placeholder="np. Urlop, choroba...">
+                    <button class="btn btn-danger" onclick="addDayOff()">Zablokuj dzien</button>
+
+                    <div class="dayoff-list" id="dayoffList"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Szybkie linki Cal.com</h3>
+                    <a href="https://app.cal.com/availability" target="_blank" rel="noopener noreferrer" class="stats-link" style="margin-bottom:0.5rem">
+                        <div class="stats-icon">🕐</div>
+                        <div>
+                            <div class="stats-label">Edytuj godziny pracy</div>
+                            <div class="stats-desc">Zmien godziny dostepnosci w Cal.com</div>
+                        </div>
+                    </a>
+                    <a href="https://app.cal.com/event-types" target="_blank" rel="noopener noreferrer" class="stats-link" style="margin-bottom:0">
+                        <div class="stats-icon">📋</div>
+                        <div>
+                            <div class="stats-label">Edytuj typy wizyt</div>
+                            <div class="stats-desc">Zmien nazwy, opisy, czasy trwania uslug</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script>
+        // Initialize Firebase
+        let app, auth, db;
+        try {
+            app = firebase.initializeApp(firebaseConfig);
+            auth = firebase.auth();
+            db = firebase.database();
+        } catch (e) {
+            document.getElementById('loginMsg').className = 'msg msg-error';
+            document.getElementById('loginMsg').textContent = 'Firebase nie skonfigurowany. Sprawdz firebase-config.js';
+        }
+
+        // Cal.com API
+        const CALCOM_API_KEY = 'cal_live_bd24682709ad321d49aa5f8cc18073f3';
+        const CALCOM_API = 'https://api.cal.com/v1';
+
+        // Default services data
+        const defaultServices = {
+            korepetycje: { name: 'Korepetycje', price: 100, unit: 'zl/h', calcomId: 4887733 },
+            'nowy-telefon': { name: 'Nowy telefon', price: 120, unit: 'zl', calcomId: 4887734 },
+            'serwis-pc': { name: 'Serwis komputera', price: 150, unit: 'zl', calcomId: 4887735 },
+            konfiguracja: { name: 'Konfiguracja urzadzen', price: 150, unit: 'zl', calcomId: 4887736 },
+            kamery: { name: 'Kamery domowe', price: 250, unit: 'zl', calcomId: 4887737 },
+            pakiet: { name: 'Pakiet kompleksowy', price: 300, unit: 'zl', calcomId: 4887738 }
+        };
+
+        // Login
+        function doLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const msg = document.getElementById('loginMsg');
+
+            if (!email || !password) {
+                msg.className = 'msg msg-error';
+                msg.textContent = 'Wpisz email i haslo';
+                return;
+            }
+
+            auth.signInWithEmailAndPassword(email, password)
+                .then(() => {})
+                .catch((error) => {
+                    msg.className = 'msg msg-error';
+                    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                        msg.textContent = 'Bledny email lub haslo';
+                    } else {
+                        msg.textContent = 'Blad logowania: ' + error.message;
+                    }
+                });
+        }
+
+        // Allow Enter key to login
+        document.getElementById('loginPassword').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') doLogin();
+        });
+
+        function doLogout() {
+            auth.signOut();
+        }
+
+        // Auth state listener
+        if (auth) {
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                    document.getElementById('loginScreen').style.display = 'none';
+                    document.getElementById('dashboard').style.display = 'block';
+                    document.getElementById('userEmail').textContent = user.email;
+                    loadPromo();
+                    loadPrices();
+                    loadBookings();
+                    loadDaysOff();
+                } else {
+                    document.getElementById('loginScreen').style.display = 'flex';
+                    document.getElementById('dashboard').style.display = 'none';
+                }
+            });
+        }
+
+        // Tabs
+        function switchTab(name) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('tab-' + name).classList.add('active');
+        }
+
+        // Show message helper
+        function showMsg(elementId, text, type) {
+            const el = document.getElementById(elementId);
+            el.className = 'msg msg-' + type;
+            el.textContent = text;
+            setTimeout(() => { el.className = 'msg'; }, 4000);
+        }
+
+        // ============ PROMO ============
+        function loadPromo() {
+            db.ref('promo').on('value', (snapshot) => {
+                const data = snapshot.val() || {};
+                document.getElementById('promoActive').checked = data.active || false;
+                document.getElementById('promoText').value = data.text || '';
+                document.getElementById('promoLink').value = data.link || '';
+                document.getElementById('promoColor').value = data.color || 'orange';
+                document.getElementById('promoExpiry').value = data.expiry || '';
+                updatePromoPreview();
+            });
+        }
+
+        function savePromo() {
+            const promo = {
+                active: document.getElementById('promoActive').checked,
+                text: document.getElementById('promoText').value,
+                link: document.getElementById('promoLink').value,
+                color: document.getElementById('promoColor').value,
+                expiry: document.getElementById('promoExpiry').value,
+                updatedAt: new Date().toISOString()
+            };
+
+            db.ref('promo').set(promo)
+                .then(() => showMsg('promoMsg', 'Promocja zapisana!', 'success'))
+                .catch((e) => showMsg('promoMsg', 'Blad: ' + e.message, 'error'));
+        }
+
+        // Preview update
+        ['promoActive', 'promoText', 'promoColor'].forEach(id => {
+            document.getElementById(id).addEventListener('input', updatePromoPreview);
+            document.getElementById(id).addEventListener('change', updatePromoPreview);
+        });
+
+        function updatePromoPreview() {
+            const preview = document.getElementById('promoPreview');
+            const text = document.getElementById('promoText').value || 'Tekst promocji...';
+            const color = document.getElementById('promoColor').value;
+            const active = document.getElementById('promoActive').checked;
+
+            const colors = {
+                orange: '#FF7900',
+                green: '#16a34a',
+                blue: '#2563eb',
+                red: '#dc2626'
+            };
+
+            preview.style.background = active ? colors[color] : var(--bg-input);
+            preview.style.opacity = active ? '1' : '0.5';
+            preview.textContent = active ? text : '(Promocja wylaczona)';
+        }
+
+        // ============ PRICES ============
+        function loadPrices() {
+            db.ref('services').on('value', (snapshot) => {
+                const data = snapshot.val() || defaultServices;
+                renderPriceGrid(data);
+            });
+        }
+
+        function renderPriceGrid(services) {
+            const grid = document.getElementById('priceGrid');
+            grid.innerHTML = '';
+
+            for (const [key, svc] of Object.entries(services)) {
+                const defaults = defaultServices[key] || {};
+                const card = document.createElement('div');
+                card.className = 'price-card';
+                card.innerHTML = `
+                    <h4>${svc.name || defaults.name || key}</h4>
+                    <div class="price-row">
+                        <div class="field">
+                            <label>Cena</label>
+                            <input type="number" id="price-${key}" value="${svc.price || defaults.price || 0}" min="0">
+                        </div>
+                        <div class="field-small">
+                            <label>Jednostka</label>
+                            <input type="text" id="unit-${key}" value="${svc.unit || defaults.unit || 'zl'}">
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            }
+        }
+
+        async function savePrices() {
+            const services = {};
+            for (const [key, defaults] of Object.entries(defaultServices)) {
+                const priceEl = document.getElementById('price-' + key);
+                const unitEl = document.getElementById('unit-' + key);
+                if (!priceEl) continue;
+
+                services[key] = {
+                    name: defaults.name,
+                    price: parseInt(priceEl.value) || defaults.price,
+                    unit: unitEl.value || defaults.unit,
+                    calcomId: defaults.calcomId
+                };
+            }
+
+            try {
+                // Save to Firebase
+                await db.ref('services').set(services);
+
+                // Update Cal.com event type titles
+                for (const [key, svc] of Object.entries(services)) {
+                    if (!svc.calcomId) continue;
+                    const titleMap = {
+                        korepetycje: `Korepetycje (smartfon/komputer) - ${svc.price} ${svc.unit}`,
+                        'nowy-telefon': `Nowy telefon - transfer danych - ${svc.price} ${svc.unit}`,
+                        'serwis-pc': `Serwis komputera - ${svc.price} ${svc.unit}`,
+                        konfiguracja: `Konfiguracja urzadzen - ${svc.price} ${svc.unit}`,
+                        kamery: `Kamery domowe - instalacja i konfiguracja - ${svc.price} ${svc.unit}`,
+                        pakiet: `Pakiet kompleksowy - ${svc.price} ${svc.unit}`
+                    };
+
+                    await fetch(`${CALCOM_API}/event-types/${svc.calcomId}?apiKey=${CALCOM_API_KEY}`, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ title: titleMap[key] || svc.name })
+                    });
+                }
+
+                showMsg('pricesMsg', 'Cennik zaktualizowany na stronie i w Cal.com!', 'success');
+            } catch (e) {
+                showMsg('pricesMsg', 'Blad: ' + e.message, 'error');
+            }
+        }
+
+        // ============ CAL.COM BOOKINGS ============
+        async function loadBookings() {
+            const container = document.getElementById('bookingsList');
+            try {
+                const res = await fetch(`${CALCOM_API}/bookings?apiKey=${CALCOM_API_KEY}&status=upcoming`);
+                const data = await res.json();
+                const bookings = data.bookings || [];
+
+                if (bookings.length === 0) {
+                    container.innerHTML = '<p style="color:var(--text-muted)">Brak nadchodzacych rezerwacji</p>';
+                    return;
+                }
+
+                container.innerHTML = bookings.map(b => {
+                    const date = new Date(b.startTime);
+                    const dateStr = date.toLocaleDateString('pl-PL', { weekday: 'short', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
+                    const statusClass = b.status === 'ACCEPTED' ? 'status-accepted' : b.status === 'PENDING' ? 'status-pending' : 'status-cancelled';
+                    const statusText = b.status === 'ACCEPTED' ? 'Potwierdzona' : b.status === 'PENDING' ? 'Oczekuje' : b.status;
+
+                    return `
+                        <div class="booking-item">
+                            <div class="booking-info">
+                                <strong>${b.title || 'Wizyta'}</strong>
+                                <span>${dateStr}</span>
+                                <span>${b.attendees?.[0]?.name || ''} - ${b.attendees?.[0]?.email || ''}</span>
+                            </div>
+                            <span class="booking-status ${statusClass}">${statusText}</span>
+                        </div>
+                    `;
+                }).join('');
+            } catch (e) {
+                container.innerHTML = '<p style="color:var(--danger)">Blad ladowania rezerwacji</p>';
+            }
+        }
+
+        // ============ DAYS OFF ============
+        function loadDaysOff() {
+            db.ref('daysOff').on('value', (snapshot) => {
+                const data = snapshot.val() || {};
+                const container = document.getElementById('dayoffList');
+                const entries = Object.entries(data).sort((a, b) => a[1].date > b[1].date ? 1 : -1);
+
+                if (entries.length === 0) {
+                    container.innerHTML = '<p style="color:var(--text-muted);padding:0.5rem 0">Brak zaplanowanych dni wolnych</p>';
+                    return;
+                }
+
+                container.innerHTML = entries.map(([id, d]) => {
+                    const dateStr = new Date(d.date + 'T00:00:00').toLocaleDateString('pl-PL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+                    return `
+                        <div class="dayoff-item">
+                            <div>
+                                <strong>${dateStr}</strong>
+                                ${d.reason ? `<br><span style="color:var(--text-muted);font-size:0.85rem">${d.reason}</span>` : ''}
+                            </div>
+                            <button class="btn-remove" onclick="removeDayOff('${id}')" title="Usun">✕</button>
+                        </div>
+                    `;
+                }).join('');
+            });
+        }
+
+        async function addDayOff() {
+            const date = document.getElementById('dayoffDate').value;
+            const reason = document.getElementById('dayoffReason').value;
+
+            if (!date) {
+                showMsg('dayoffMsg', 'Wybierz date', 'error');
+                return;
+            }
+
+            try {
+                // Save to Firebase
+                await db.ref('daysOff').push({ date, reason, createdAt: new Date().toISOString() });
+
+                // Block in Cal.com - add date override with no slots
+                const scheduleRes = await fetch(`https://api.cal.com/v2/schedules/1282493`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${CALCOM_API_KEY}`,
+                        'cal-api-version': '2024-06-11'
+                    }
+                });
+                const scheduleData = await scheduleRes.json();
+                const overrides = scheduleData.data?.overrides || [];
+                overrides.push({ date: date, startTime: '00:00', endTime: '00:00' });
+
+                await fetch(`https://api.cal.com/v2/schedules/1282493`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${CALCOM_API_KEY}`,
+                        'cal-api-version': '2024-06-11'
+                    },
+                    body: JSON.stringify({ overrides })
+                });
+
+                document.getElementById('dayoffDate').value = '';
+                document.getElementById('dayoffReason').value = '';
+                showMsg('dayoffMsg', 'Dzien wolny dodany!', 'success');
+            } catch (e) {
+                showMsg('dayoffMsg', 'Zapisano w panelu. Cal.com moze wymagac recznej aktualizacji.', 'success');
+            }
+        }
+
+        async function removeDayOff(id) {
+            if (!confirm('Usunac dzien wolny?')) return;
+            await db.ref('daysOff/' + id).remove();
+        }
+
+        // Fix for updatePromoPreview - handle CSS variable
+        function updatePromoPreview() {
+            const preview = document.getElementById('promoPreview');
+            const text = document.getElementById('promoText').value || 'Tekst promocji...';
+            const color = document.getElementById('promoColor').value;
+            const active = document.getElementById('promoActive').checked;
+
+            const colors = {
+                orange: '#FF7900',
+                green: '#16a34a',
+                blue: '#2563eb',
+                red: '#dc2626'
+            };
+
+            preview.style.background = active ? colors[color] : '#334155';
+            preview.style.opacity = active ? '1' : '0.5';
+            preview.textContent = active ? text : '(Promocja wylaczona)';
+        }
+    </script>
+</body>
+</html>

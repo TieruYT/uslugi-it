@@ -51,6 +51,14 @@
     </script>
 </head>
 <body>
+    <!-- Promo Banner -->
+    <div id="promoBanner" class="promo-banner" style="display:none">
+        <div class="promo-banner-content">
+            <span id="promoBannerText"></span>
+            <button class="promo-banner-close">&times;</button>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -378,6 +386,10 @@
     </div>
 
     <noscript><style>section{opacity:1!important;transform:none!important}</style></noscript>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="site-firebase.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
