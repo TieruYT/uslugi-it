@@ -588,24 +588,6 @@
             document.getElementById(id).addEventListener('change', updatePromoPreview);
         });
 
-        function updatePromoPreview() {
-            const preview = document.getElementById('promoPreview');
-            const text = document.getElementById('promoText').value || 'Tekst promocji...';
-            const color = document.getElementById('promoColor').value;
-            const active = document.getElementById('promoActive').checked;
-
-            const colors = {
-                orange: '#FF7900',
-                green: '#16a34a',
-                blue: '#2563eb',
-                red: '#dc2626'
-            };
-
-            preview.style.background = active ? colors[color] : var(--bg-input);
-            preview.style.opacity = active ? '1' : '0.5';
-            preview.textContent = active ? text : '(Promocja wylaczona)';
-        }
-
         // ============ PRICES ============
         function loadPrices() {
             db.ref('services').on('value', (snapshot) => {
