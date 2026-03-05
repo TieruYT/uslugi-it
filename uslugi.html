@@ -3,59 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Zakres usług IT i cennik - Dawid Saworski - konfiguracja komputerów, smartfonów, drukarek w Toruniu">
-    <title>Usługi i Cennik - Usługi IT Dawid Saworski | Toruń</title>
+    <meta name="robots" content="noindex, nofollow">
+    <title>Jak moge pomoc - Dawid Saworski | Konsultant Orange Torun</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#FF7900">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Usługi IT">
+    <meta name="apple-mobile-web-app-title" content="Dawid Orange">
     <link rel="apple-touch-icon" href="icons/icon-192x192.png">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://saworski-it.pl/uslugi.html">
-    <meta property="og:title" content="Usługi i Cennik - Usługi IT Dawid Saworski">
-    <meta property="og:description" content="Korepetycje, serwis komputerów, konfiguracja smartfonów, kamery domowe. Ceny od 100 zł. Dojazd gratis w Toruniu!">
-    <meta property="og:image" content="https://saworski-it.pl/og-image.jpg">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Usługi i Cennik - Usługi IT Dawid Saworski">
-    <meta name="twitter:description" content="Korepetycje, serwis komputerów, konfiguracja smartfonów, kamery domowe. Ceny od 100 zł. Dojazd gratis w Toruniu!">
-    <meta name="twitter:image" content="https://saworski-it.pl/og-image.jpg">
-
-    <link rel="canonical" href="https://saworski-it.pl/uslugi.html">
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Google Analytics - ładowane tylko po zgodzie na cookies -->
-    <script>
-      function loadGoogleAnalytics() {
-        if (localStorage.getItem('cookieConsent') === 'accepted') {
-          var script = document.createElement('script');
-          script.async = true;
-          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-JLGYMVFPQQ';
-          document.head.appendChild(script);
-
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          window.gtag = gtag;
-          gtag('js', new Date());
-          gtag('config', 'G-JLGYMVFPQQ');
-        }
-      }
-      if (localStorage.getItem('cookieConsent') === 'accepted') {
-        loadGoogleAnalytics();
-      }
-    </script>
 </head>
 <body>
-    <!-- Promo Banner -->
-    <div id="promoBanner" class="promo-banner" style="display:none">
-        <div class="promo-banner-content">
+    <!-- Promo Banner (managed from admin panel via Firebase) -->
+    <div id="promoBanner" class="promo-banner" style="display:none;">
+        <div class="container" style="display:flex;align-items:center;justify-content:center;gap:1rem;">
             <span id="promoBannerText"></span>
-            <button class="promo-banner-close">&times;</button>
+            <button class="promo-banner-close" aria-label="Zamknij">&times;</button>
         </div>
     </div>
 
@@ -64,15 +28,15 @@
         <div class="container">
             <div class="nav-brand">
                 <a href="index.html">
-                    <span class="logo">💻</span>
-                    <span class="brand-name">Usługi IT - Dawid Saworski</span>
+                    <span class="logo">&#x1F4F1;</span>
+                    <span class="brand-name">Dawid Saworski</span>
                 </a>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html">Start</a></li>
                 <li><a href="o-mnie.html">O mnie</a></li>
-                <li><a href="uslugi.html" class="active">Usługi</a></li>
-                <li><a href="index.html#booking">Rezerwacja</a></li>
+                <li><a href="uslugi.html" class="active">Jak moge pomoc</a></li>
+                <li><a href="index.html#booking">Umow sie</a></li>
                 <li><a href="index.html#contact">Kontakt</a></li>
             </ul>
             <div class="menu-toggle" role="button" aria-label="Menu nawigacyjne" aria-expanded="false" tabindex="0">
@@ -84,185 +48,85 @@
     </nav>
 
     <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>Usługi i Cennik</h1>
-            <p>Kompleksowa obsługa IT dla Twojego domu i małego biura</p>
+    <section class="hero" style="min-height:auto;padding:6rem 0 3rem;">
+        <div class="container" style="text-align:center;">
+            <h1 class="hero-title">Jak moge <span class="highlight">pomoc</span>?</h1>
+            <p class="hero-subtitle">Umow sie i przyjdz - porozmawiamy na spokojnie</p>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
+    <!-- Services -->
+    <section class="services" style="padding:4rem 0;">
         <div class="container">
-            <h2 class="section-title">Zakres usług</h2>
-            <div class="services-grid">
+            <div class="services-grid" style="grid-template-columns:repeat(2,1fr);max-width:800px;margin:0 auto;">
                 <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <h3>Smartfony i tablety</h3>
+                    <div class="service-icon">&#x1F4F6;</div>
+                    <h3>Zakup nowej uslugi</h3>
                     <ul>
-                        <li>Korepetycje z obsługi (podstawy i zaawansowane funkcje)</li>
-                        <li>Zgrywanie danych ze starego na nowy telefon</li>
-                        <li>Kopia zapasowa do komputera/chmury</li>
-                        <li>Konfiguracja AI, tłumaczy, aplikacji</li>
-                        <li>Rozwiązywanie problemów</li>
+                        <li>Abonament komorkowy</li>
+                        <li>Internet domowy</li>
+                        <li>Telewizja</li>
+                        <li>Telefon</li>
+                        <li>Pakiety i dodatki</li>
                     </ul>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">💻</div>
-                    <h3>Komputery Windows</h3>
+                    <div class="service-icon">&#x1F4CB;</div>
+                    <h3>Przedluzenie umowy</h3>
                     <ul>
-                        <li>Czyszczenie z wirusów i malware</li>
-                        <li>Aktualizacja i optymalizacja systemu</li>
-                        <li>Reinstalacja Windows</li>
-                        <li>Szkolenia dla początkujących</li>
-                        <li>Pomoc w doborze nowego sprzętu</li>
+                        <li>Nowe warunki umowy</li>
+                        <li>Zmiana taryfy</li>
+                        <li>Wymiana telefonu</li>
                     </ul>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🖨️</div>
-                    <h3>Urządzenia peryferyjne</h3>
+                    <div class="service-icon">&#x1F4B0;</div>
+                    <h3>Wyjasnienie rachunku</h3>
                     <ul>
-                        <li>Instalacja i konfiguracja drukarek</li>
-                        <li>Konfiguracja sieci WiFi i routerów</li>
-                        <li>Podłączanie i konfiguracja drukarek sieciowych</li>
-                        <li>Rozwiązywanie problemów z łącznością</li>
+                        <li>Omowienie rachunku</li>
+                        <li>Naliczenia i platnosci</li>
+                        <li>Reklamacja</li>
                     </ul>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">📹</div>
-                    <h3>Smart Home</h3>
+                    <div class="service-icon">&#x2753;</div>
+                    <h3>Inne</h3>
                     <ul>
-                        <li>Dobór odpowiedniej kamery domowej</li>
-                        <li>Instalacja i konfiguracja</li>
-                        <li>Podłączenie do telefonu/komputera</li>
-                        <li>Szkolenie z obsługi aplikacji</li>
+                        <li>Reklamacja / problem techniczny</li>
+                        <li>Odkup telefonu</li>
+                        <li>Przeniesienie numeru</li>
                     </ul>
                 </div>
             </div>
+            <p style="text-align:center;margin-top:2rem;color:var(--text-light,#666);font-size:1.05rem;">
+                Obsluguje klientow indywidualnych oraz firmy
+            </p>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
+    <!-- How it works -->
+    <section style="padding:4rem 0;background:var(--bg-light,#f8f9fa);">
         <div class="container">
-            <h2 class="section-title">Cennik</h2>
-            <p class="section-subtitle">Przejrzyste ceny bez ukrytych kosztów</p>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Korepetycje</h3>
-                        <div class="price">
-                            <span class="amount">100 zł</span>
-                            <span class="period">/ godzina</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>✓ Obsługa smartfona</li>
-                        <li>✓ Obsługa Windows dla początkujących</li>
-                        <li>✓ Konfiguracja aplikacji, nauka korzystania z AI</li>
-                        <li>✓ Dojazd gratis</li>
-                    </ul>
-                    <button class="btn-order" data-service="Korepetycje" data-price="100 zł/h">Umów się</button>
+            <h2 class="section-title">Jak to dziala?</h2>
+            <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;margin-top:2rem;">
+                <div style="flex:1;min-width:220px;max-width:300px;text-align:center;padding:2rem;">
+                    <div style="width:50px;height:50px;background:var(--primary-color,#FF7900);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;margin:0 auto 1rem;">1</div>
+                    <h3 style="margin-bottom:0.5rem;">Umow sie online</h3>
+                    <p style="color:var(--text-light,#666);">Wybierz temat i termin w kalendarzu</p>
                 </div>
-
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Nowy telefon</h3>
-                        <div class="price">
-                            <span class="amount">120 zł</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>✓ Konfiguracja nowego telefonu</li>
-                        <li>✓ Zgrywanie danych ze starego telefonu</li>
-                        <li>✓ Kopia zapasowa do komputera lub chmury</li>
-                        <li>✓ Dojazd gratis</li>
-                    </ul>
-                    <button class="btn-order" data-service="Konfiguracja i zgrywanie danych na nowy telefon" data-price="120 zł">Umów się</button>
+                <div style="flex:1;min-width:220px;max-width:300px;text-align:center;padding:2rem;">
+                    <div style="width:50px;height:50px;background:var(--primary-color,#FF7900);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;margin:0 auto 1rem;">2</div>
+                    <h3 style="margin-bottom:0.5rem;">Przyjdz do Smart Store</h3>
+                    <p style="color:var(--text-light,#666);">ul. Grudziadzka 1-3, Torun</p>
                 </div>
-
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Serwis komputera</h3>
-                        <div class="price">
-                            <span class="amount">150 zł</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>✓ Czyszczenie z wirusów</li>
-                        <li>✓ Aktualizacja Windows</li>
-                        <li>✓ Czyszczenie systemu</li>
-                        <li>✓ Reinstalacja Windows (opcjonalnie)</li>
-                        <li>✓ Dojazd gratis</li>
-                    </ul>
-                    <button class="btn-order" data-service="Serwis komputera" data-price="150 zł">Umów się</button>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Konfiguracja urządzeń</h3>
-                        <div class="price">
-                            <span class="amount">150 zł</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>✓ Instalacja drukarek</li>
-                        <li>✓ Konfiguracja routera WiFi</li>
-                        <li>✓ Konfiguracja dekoderów</li>
-                        <li>✓ Dojazd gratis</li>
-                    </ul>
-                    <button class="btn-order" data-service="Konfiguracja urządzeń" data-price="150 zł">Umów się</button>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Kamery domowe</h3>
-                        <div class="price">
-                            <span class="amount">250 zł</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>✓ Konsultacja i dobór kamery</li>
-                        <li>✓ Kupno i dostawa (wliczone w cenę usługi)</li>
-                        <li>✓ Instalacja i konfiguracja</li>
-                        <li>✓ Szkolenie z obsługi</li>
-                        <li>✓ Dojazd gratis</li>
-                    </ul>
-                    <button class="btn-order" data-service="Kamery domowe" data-price="250 zł">Umów się</button>
-                </div>
-
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Popularne</div>
-                    <div class="pricing-header">
-                        <h3>Pakiet kompleksowy</h3>
-                        <div class="price">
-                            <span class="amount">300 zł</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>✓ Konfiguracja sprzętów</li>
-                        <li>✓ Naprawa/czyszczenie komputera</li>
-                        <li>✓ Konfiguracja telefonu</li>
-                        <li>✓ Wszystko w jednej wizycie</li>
-                        <li>✓ Dojazd gratis</li>
-                    </ul>
-                    <button class="btn-order" data-service="Pakiet kompleksowy" data-price="300 zł">Umów się</button>
+                <div style="flex:1;min-width:220px;max-width:300px;text-align:center;padding:2rem;">
+                    <div style="width:50px;height:50px;background:var(--primary-color,#FF7900);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;margin:0 auto 1rem;">3</div>
+                    <h3 style="margin-bottom:0.5rem;">Porozmawiamy na spokojnie</h3>
+                    <p style="color:var(--text-light,#666);">Bez pospieszania, bez kolejek</p>
                 </div>
             </div>
-            <div class="pricing-note">
-                <p><strong>Uwaga:</strong> Ceny mogą ulec zmianie w zależności od skomplikowania problemu. Przed rozpoczęciem prac ustalamy dokładny zakres i koszt.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2 class="section-title">Zainteresowany?</h2>
-            <p class="section-subtitle">Zarezerwuj wizytę online lub skontaktuj się bezpośrednio</p>
-            <div class="hero-buttons">
-                <a href="index.html#booking" class="btn btn-primary">Zarezerwuj wizytę</a>
-                <a href="index.html#contact" class="btn btn-secondary btn-outline">Kontakt</a>
+            <div style="text-align:center;margin-top:2rem;">
+                <a href="index.html#booking" class="btn btn-primary">Umow wizyte</a>
             </div>
         </div>
     </section>
@@ -272,118 +136,37 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Usługi IT - Dawid Saworski</h4>
-                    <p>Profesjonalna pomoc techniczna w Twoim domu</p>
+                    <h4>Dawid Saworski</h4>
+                    <p>Twoj konsultant Orange w Toruniu</p>
+                    <p style="font-size:0.85rem;margin-top:0.5rem;opacity:0.7;">Smart Store Orange, ul. Grudziadzka 1-3</p>
                 </div>
                 <div class="footer-section">
                     <h4>Szybkie linki</h4>
                     <ul>
                         <li><a href="o-mnie.html">O mnie</a></li>
-                        <li><a href="uslugi.html">Usługi</a></li>
-                        <li><a href="index.html#booking">Rezerwacja</a></li>
-                        <li><a href="index.html#contact">Kontakt</a></li>
+                        <li><a href="uslugi.html">Jak moge pomoc</a></li>
+                        <li><a href="index.html#booking">Umow wizyte</a></li>
+                        <li><a href="polityka-prywatnosci.html">Polityka prywatnosci</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Kontakt</h4>
-                    <p>Email: saworski.uslugi@gmail.com</p>
-                    <p>Tel: +48 535 035 761</p>
+                    <p>Tel: <a href="tel:+48502500802" style="color:inherit;">+48 502 500 802</a></p>
+                    <p><a href="mailto:dawid.saworski@orange.com" style="color:inherit;font-size:0.9rem;">dawid.saworski@orange.com</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Usługi IT - Dawid Saworski. Wszystkie prawa zastrzeżone.</p>
+                <p>&copy; 2026 Dawid Saworski | Strona nieoficjalna - narzedzie prywatne konsultanta Orange</p>
             </div>
         </div>
     </footer>
 
-    <!-- Order Modal -->
-    <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <h2 class="modal-title">Umów się</h2>
-
-            <div class="modal-service-info">
-                <p><strong>Wybrana usługa:</strong> <span id="modalServiceName"></span></p>
-                <p><strong>Cena:</strong> <span id="modalServicePrice"></span></p>
-            </div>
-
-            <div class="priority-cta compact">
-                <div class="priority-text">
-                    <h3>Zadzwoń lub napisz!</h3>
-                    <div class="priority-buttons">
-                        <a href="tel:+48535035761" class="priority-phone">📞 +48 535 035 761</a>
-                        <a href="https://wa.me/48535035761" target="_blank" rel="noopener noreferrer" class="priority-whatsapp">💬 WhatsApp</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-divider compact">
-                <span>lub zarezerwuj online</span>
-            </div>
-
-            <div class="modal-calendar-link">
-                <a href="index.html#booking" class="btn btn-primary btn-block">Przejdź do kalendarza rezerwacji</a>
-            </div>
-
-            <div class="modal-divider compact">
-                <span>lub formularz</span>
-            </div>
-
-            <form id="orderForm" class="order-form" action="https://getform.io/f/axozdxqb" method="POST">
-                <input type="hidden" id="selectedService" name="service">
-                <input type="hidden" name="_gotcha" style="display:none !important">
-
-                <div class="form-group">
-                    <label for="orderName">Imię i nazwisko *</label>
-                    <input type="text" id="orderName" name="name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="orderPhone">Telefon *</label>
-                    <input type="tel" id="orderPhone" name="phone" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="orderEmail">Email</label>
-                    <input type="email" id="orderEmail" name="email">
-                </div>
-
-                <div class="form-group">
-                    <label for="orderMessage">Dodatkowe informacje</label>
-                    <textarea id="orderMessage" name="message" rows="3" placeholder="Np. preferowany termin, dodatkowe pytania..."></textarea>
-                </div>
-
-                <div class="form-group checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="consent" required>
-                        <span>Wyrażam zgodę na przetwarzanie moich danych osobowych. <a href="polityka-prywatnosci.html" target="_blank" rel="noopener noreferrer">Polityka prywatności</a></span>
-                    </label>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Wyślij zapytanie</button>
-            </form>
-
-            <div id="orderFormStatus" class="form-status"></div>
-        </div>
-    </div>
-
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/48535035761" target="_blank" rel="noopener noreferrer" class="whatsapp-float" title="Napisz na WhatsApp">
+    <a href="https://wa.me/48502500802" target="_blank" rel="noopener noreferrer" class="whatsapp-float" title="Napisz na WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
             <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
         </svg>
     </a>
-
-    <!-- Cookie Banner -->
-    <div id="cookieBanner" class="cookie-banner">
-        <div class="cookie-content">
-            <p>Ta strona używa plików cookies (Google Analytics) do analizy ruchu. Czy wyrażasz zgodę?</p>
-            <div class="cookie-buttons">
-                <button id="cookieAccept" class="btn btn-primary btn-small">Akceptuję</button>
-                <button id="cookieReject" class="btn btn-secondary btn-small">Odrzucam</button>
-            </div>
-        </div>
-    </div>
 
     <noscript><style>section{opacity:1!important;transform:none!important}</style></noscript>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>

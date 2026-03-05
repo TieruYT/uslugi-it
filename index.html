@@ -3,110 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Profesjonalne usługi IT - Dawid Saworski - konfiguracja komputerów, smartfonów, drukarek i pomocy technicznej w Toruniu i okolicach">
-    <title>Usługi IT - Dawid Saworski | Toruń</title>
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dawid Saworski - Twoj Konsultant Orange | Torun</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#FF7900">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Usługi IT">
+    <meta name="apple-mobile-web-app-title" content="Dawid Orange">
     <link rel="apple-touch-icon" href="icons/icon-192x192.png">
     <link rel="preconnect" href="https://cal.com">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://saworski-it.pl/">
-    <meta property="og:title" content="Usługi IT - Dawid Saworski | Toruń">
-    <meta property="og:description" content="Profesjonalne usługi IT - konfiguracja komputerów, smartfonów, drukarek i pomoc techniczna w Toruniu. Dojazd gratis!">
-    <meta property="og:image" content="https://saworski-it.pl/og-image.jpg">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Usługi IT - Dawid Saworski | Toruń">
-    <meta name="twitter:description" content="Profesjonalne usługi IT - konfiguracja komputerów, smartfonów, drukarek i pomoc techniczna w Toruniu. Dojazd gratis!">
-    <meta name="twitter:image" content="https://saworski-it.pl/og-image.jpg">
-
-    <link rel="canonical" href="https://saworski-it.pl/">
     <link rel="stylesheet" href="styles.css">
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Usługi IT - Dawid Saworski",
-        "description": "Profesjonalne usługi IT - konfiguracja komputerów, smartfonów, drukarek i pomoc techniczna w Toruniu i okolicach",
-        "telephone": "+48535035761",
-        "email": "saworski.uslugi@gmail.com",
-        "url": "https://saworski-it.pl",
-        "areaServed": {
-            "@type": "City",
-            "name": "Toruń"
-        },
-        "priceRange": "100-300 PLN",
-        "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-                "opens": "18:30",
-                "closes": "20:30"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Saturday",
-                "opens": "15:30",
-                "closes": "20:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Sunday",
-                "opens": "12:00",
-                "closes": "20:00"
-            }
-        ],
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Usługi IT",
-            "itemListElement": [
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Korepetycje (smartfon/komputer)"}, "price": "100", "priceCurrency": "PLN"},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Nowy telefon - transfer danych"}, "price": "120", "priceCurrency": "PLN"},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Serwis komputera"}, "price": "150", "priceCurrency": "PLN"},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Konfiguracja urządzeń"}, "price": "150", "priceCurrency": "PLN"},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kamery domowe"}, "price": "250", "priceCurrency": "PLN"},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pakiet kompleksowy"}, "price": "300", "priceCurrency": "PLN"}
-            ]
-        }
-    }
-    </script>
-
-    <!-- Google Analytics - ładowane tylko po zgodzie na cookies -->
-    <script>
-      function loadGoogleAnalytics() {
-        if (localStorage.getItem('cookieConsent') === 'accepted') {
-          var script = document.createElement('script');
-          script.async = true;
-          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-JLGYMVFPQQ';
-          document.head.appendChild(script);
-
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          window.gtag = gtag;
-          gtag('js', new Date());
-          gtag('config', 'G-JLGYMVFPQQ');
-        }
-      }
-      if (localStorage.getItem('cookieConsent') === 'accepted') {
-        loadGoogleAnalytics();
-      }
-    </script>
 </head>
 <body>
-    <!-- Promo Banner -->
-    <div id="promoBanner" class="promo-banner" style="display:none">
-        <div class="promo-banner-content">
+    <!-- Promo Banner (managed from admin panel via Firebase) -->
+    <div id="promoBanner" class="promo-banner" style="display:none;">
+        <div class="container" style="display:flex;align-items:center;justify-content:center;gap:1rem;">
             <span id="promoBannerText"></span>
-            <button class="promo-banner-close">&times;</button>
+            <button class="promo-banner-close" aria-label="Zamknij">&times;</button>
         </div>
     </div>
 
@@ -115,15 +29,15 @@
         <div class="container">
             <div class="nav-brand">
                 <a href="index.html">
-                    <span class="logo">💻</span>
-                    <span class="brand-name">Usługi IT - Dawid Saworski</span>
+                    <span class="logo">&#x1F4F1;</span>
+                    <span class="brand-name">Dawid Saworski</span>
                 </a>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html">Start</a></li>
                 <li><a href="o-mnie.html">O mnie</a></li>
-                <li><a href="uslugi.html">Usługi</a></li>
-                <li><a href="#booking">Rezerwacja</a></li>
+                <li><a href="uslugi.html">Jak moge pomoc</a></li>
+                <li><a href="#booking">Umow sie</a></li>
                 <li><a href="#contact">Kontakt</a></li>
             </ul>
             <div class="menu-toggle" role="button" aria-label="Menu nawigacyjne" aria-expanded="false" tabindex="0">
@@ -138,26 +52,88 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Profesjonalna pomoc IT <span class="highlight">u Ciebie w domu</span></h1>
-                <p class="hero-subtitle">Konfiguracja | Naprawa | Szkolenia</p>
+                <h1 class="hero-title">Twoj konsultant <span class="highlight">Orange</span></h1>
+                <p class="hero-subtitle">Dawid Saworski | Smart Store Torun</p>
                 <div class="hero-buttons">
-                    <a href="#booking" class="btn btn-primary">Zarezerwuj wizytę</a>
-                    <a href="uslugi.html" class="btn btn-secondary">Zobacz cennik</a>
+                    <a href="#booking" class="btn btn-primary">Umow wizyte</a>
+                    <a href="uslugi.html" class="btn btn-secondary">Jak moge pomoc?</a>
                 </div>
                 <div class="hero-features">
                     <div class="feature-item">
-                        <span class="feature-icon">✓</span>
-                        <span>Dojazd gratis</span>
+                        <span class="feature-icon">&#x2713;</span>
+                        <span>Osobiste podejscie</span>
                     </div>
                     <div class="feature-item">
-                        <span class="feature-icon">✓</span>
-                        <span>Bez ukrytych kosztów</span>
+                        <span class="feature-icon">&#x2713;</span>
+                        <span>Bez kolejek</span>
                     </div>
                     <div class="feature-item">
-                        <span class="feature-icon">✓</span>
-                        <span>Gwarancja jakości</span>
+                        <span class="feature-icon">&#x2713;</span>
+                        <span>Doradztwo na spokojnie</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section id="services-preview" class="services">
+        <div class="container">
+            <h2 class="section-title">W czym moge Ci pomoc?</h2>
+            <p class="section-subtitle">Umow sie i przyjdz do mnie w Smart Store - porozmawiam z Toba na spokojnie</p>
+            <div class="services-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 700px; margin: 0 auto;">
+                <div class="service-card">
+                    <div class="service-icon">&#x1F4F6;</div>
+                    <h3>Zakup nowej uslugi</h3>
+                    <ul>
+                        <li>Abonament, internet, TV, telefon</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">&#x1F4CB;</div>
+                    <h3>Przedluzenie umowy</h3>
+                    <ul>
+                        <li>Nowe warunki, zmiana oferty</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">&#x1F4B0;</div>
+                    <h3>Wyjasnienie rachunku</h3>
+                    <ul>
+                        <li>Rachunek, platnosci, reklamacja</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">&#x2753;</div>
+                    <h3>Inne</h3>
+                    <ul>
+                        <li>Problem techniczny, odkup, pytania</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="text-align:center;margin-top:1.5rem;color:var(--text-muted,#94a3b8);">Obsluguje klientow indywidualnych i firmy. <a href="uslugi.html" style="color:var(--primary-color,#FF7900);">Wiecej szczegolow</a></p>
+        </div>
+    </section>
+
+    <!-- Working Hours -->
+    <section id="hours" class="working-hours">
+        <div class="container">
+            <h2 class="section-title">Godziny pracy</h2>
+            <p class="section-subtitle">Smart Store Orange, ul. Grudziadzka 1-3, Torun</p>
+            <div style="max-width:500px;margin:0 auto;">
+                <div style="display:flex;justify-content:space-between;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.1);">
+                    <span>Poniedzialek - Piatek</span>
+                    <strong>9:00 - 18:00</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.1);">
+                    <span>Sobota</span>
+                    <strong>9:00 - 14:00</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:0.75rem 0;">
+                    <span>Niedziela</span>
+                    <strong style="color:var(--text-muted,#94a3b8)">Nieczynne</strong>
+                </div>
+                <p style="text-align:center;color:var(--text-muted,#94a3b8);font-size:0.85rem;margin-top:1rem;">Grafik zmianowy - dokladne godziny moga sie roznic. Aktualna dostepnosc widoczna w kalendarzu ponizej.</p>
             </div>
         </div>
     </section>
@@ -165,29 +141,29 @@
     <!-- Booking Section -->
     <section id="booking" class="booking">
         <div class="container">
-            <h2 class="section-title">Zarezerwuj wizytę</h2>
-            <p class="section-subtitle">Wybierz usługę i termin - potwierdzę rezerwację jak najszybciej</p>
+            <h2 class="section-title">Umow wizyte</h2>
+            <p class="section-subtitle">Wybierz temat i termin - przyjde do Ciebie w salonie</p>
 
             <div class="booking-info">
                 <div class="booking-info-card">
                     <div class="booking-info-icon">1</div>
                     <div>
-                        <strong>Wybierz usługę</strong>
-                        <p>Kliknij interesującą Cię usługę w kalendarzu</p>
+                        <strong>Wybierz cel wizyty</strong>
+                        <p>Kliknij co Cie interesuje</p>
                     </div>
                 </div>
                 <div class="booking-info-card">
                     <div class="booking-info-icon">2</div>
                     <div>
                         <strong>Wybierz termin</strong>
-                        <p>Zaznacz wolny termin, który Ci pasuje</p>
+                        <p>Wolne terminy w kalendarzu</p>
                     </div>
                 </div>
                 <div class="booking-info-card">
                     <div class="booking-info-icon">3</div>
                     <div>
-                        <strong>Potwierdzenie</strong>
-                        <p>Otrzymasz potwierdzenie wizyty na email</p>
+                        <strong>Gotowe!</strong>
+                        <p>Przyjdz do Smart Store</p>
                     </div>
                 </div>
             </div>
@@ -203,21 +179,20 @@
                 ></iframe>
                 <div class="booking-placeholder" id="bookingPlaceholder">
                     <div class="booking-placeholder-content">
-                        <span class="booking-placeholder-icon">📅</span>
+                        <span class="booking-placeholder-icon">&#x1F4C5;</span>
                         <h3>Kalendarz rezerwacji</h3>
-                        <p>System rezerwacji jest w trakcie konfiguracji.</p>
-                        <p>W międzyczasie umów się telefonicznie lub przez WhatsApp:</p>
+                        <p>W miedzyczasie umow sie telefonicznie lub przez WhatsApp:</p>
                         <div class="booking-placeholder-buttons">
-                            <a href="tel:+48535035761" class="btn btn-primary">📞 +48 535 035 761</a>
-                            <a href="https://wa.me/48535035761" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">💬 WhatsApp</a>
+                            <a href="tel:+48502500802" class="btn btn-primary">&#x1F4DE; +48 502 500 802</a>
+                            <a href="https://wa.me/48502500802" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">&#x1F4AC; WhatsApp</a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="booking-note">
-                <p><strong>Dostępność:</strong> Pn-Pt: 18:30-20:30 | Sobota: 15:30-20:00 | Niedziela: 12:00-20:00</p>
-                <p>W niektóre dni dostępność może być rozszerzona. Każda rezerwacja wymaga mojego potwierdzenia.</p>
+                <p><strong>Gdzie?</strong> Smart Store Orange, ul. Grudziadzka 1-3, Torun</p>
+                <p>Rezerwujac wizyte podajesz tylko imie i numer telefonu. <a href="polityka-prywatnosci.html" style="color:var(--primary-color,#FF7900);">Informacja o przetwarzaniu danych</a></p>
             </div>
         </div>
     </section>
@@ -226,91 +201,46 @@
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Kontakt</h2>
-            <p class="section-subtitle">Masz pytania? Napisz lub zadzwoń!</p>
+            <p class="section-subtitle">Masz pytanie? Zadzwon lub napisz!</p>
 
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Skontaktuj się ze mną</h3>
+            <div class="contact-content" style="grid-template-columns: 1fr;">
+                <div class="contact-info" style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;">
                     <div class="contact-item">
-                        <div class="contact-icon">📧</div>
+                        <div class="contact-icon">&#x1F4F1;</div>
+                        <div>
+                            <strong>Telefon sluzbowy</strong>
+                            <p><a href="tel:+48502500802">+48 502 500 802</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">&#x2709;&#xFE0F;</div>
                         <div>
                             <strong>Email</strong>
-                            <p><a href="mailto:saworski.uslugi@gmail.com">saworski.uslugi@gmail.com</a></p>
+                            <p><a href="mailto:dawid.saworski@orange.com">dawid.saworski@orange.com</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div>
-                            <strong>Telefon</strong>
-                            <p><a href="tel:+48535035761">+48 535 035 761</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🕒</div>
-                        <div>
-                            <strong>Dostępność</strong>
-                            <p>Kontakt mailowy lub telefoniczny</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <strong>Obszar działania</strong>
-                            <p>Toruń i okolice<br>(dojazd gratis!)</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">💬</div>
+                        <div class="contact-icon">&#x1F4AC;</div>
                         <div>
                             <strong>WhatsApp</strong>
-                            <p><a href="https://wa.me/48535035761" target="_blank" rel="noopener noreferrer">Napisz na WhatsApp</a></p>
+                            <p><a href="https://wa.me/48502500802" target="_blank" rel="noopener noreferrer">Napisz na WhatsApp</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">&#x1F4CD;</div>
+                        <div>
+                            <strong>Smart Store Orange</strong>
+                            <p>ul. Grudziadzka 1-3, Torun</p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="contact-form-wrapper">
-                    <form id="contactForm" class="contact-form" action="https://getform.io/f/axozdxqb" method="POST">
-                        <input type="hidden" name="subject" value="Nowe zapytanie ze strony Usługi IT">
-                        <input type="hidden" name="_gotcha" style="display:none !important">
-
-                        <div class="form-group">
-                            <label for="name">Imię i nazwisko *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Telefon</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="service">Jaka usługa Cię interesuje?</label>
-                            <select id="service" name="service">
-                                <option value="">Wybierz...</option>
-                                <option value="korepetycje">Korepetycje (smartfon/komputer)</option>
-                                <option value="transfer">Transfer danych</option>
-                                <option value="serwis-pc">Serwis komputera</option>
-                                <option value="konfiguracja">Konfiguracja urządzeń</option>
-                                <option value="kamery">Kamery domowe</option>
-                                <option value="inne">Inne</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Wiadomość *</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <div class="form-group checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="consent" required>
-                                <span>Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na zapytanie. <a href="polityka-prywatnosci.html" target="_blank" rel="noopener noreferrer">Polityka prywatności</a></span>
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Wyślij zapytanie</button>
-                    </form>
-                    <div id="formStatus" class="form-status"></div>
-                </div>
+            <!-- Google Maps -->
+            <div style="margin-top:2rem;text-align:center;">
+                <a href="https://share.google/3QpC7CRVpW8SWb8Xe" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:0.5rem;">
+                    &#x1F4CD; Pokaz na mapie Google
+                </a>
             </div>
         </div>
     </section>
@@ -320,47 +250,37 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Usługi IT - Dawid Saworski</h4>
-                    <p>Profesjonalna pomoc techniczna w Twoim domu</p>
+                    <h4>Dawid Saworski</h4>
+                    <p>Twoj konsultant Orange w Toruniu</p>
+                    <p style="font-size:0.85rem;margin-top:0.5rem;opacity:0.7;">Smart Store Orange, ul. Grudziadzka 1-3</p>
                 </div>
                 <div class="footer-section">
                     <h4>Szybkie linki</h4>
                     <ul>
                         <li><a href="o-mnie.html">O mnie</a></li>
-                        <li><a href="uslugi.html">Usługi</a></li>
-                        <li><a href="#booking">Rezerwacja</a></li>
-                        <li><a href="#contact">Kontakt</a></li>
+                        <li><a href="uslugi.html">Jak moge pomoc</a></li>
+                        <li><a href="#booking">Umow wizyte</a></li>
+                        <li><a href="polityka-prywatnosci.html">Polityka prywatnosci</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Kontakt</h4>
-                    <p>Email: saworski.uslugi@gmail.com</p>
-                    <p>Tel: +48 535 035 761</p>
+                    <p>Tel: <a href="tel:+48502500802" style="color:inherit;">+48 502 500 802</a></p>
+                    <p><a href="mailto:dawid.saworski@orange.com" style="color:inherit;font-size:0.9rem;">dawid.saworski@orange.com</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Usługi IT - Dawid Saworski. Wszystkie prawa zastrzeżone.</p>
+                <p>&copy; 2026 Dawid Saworski | Strona nieoficjalna - narzedzie prywatne konsultanta Orange</p>
             </div>
         </div>
     </footer>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/48535035761" target="_blank" rel="noopener noreferrer" class="whatsapp-float" title="Napisz na WhatsApp">
+    <a href="https://wa.me/48502500802" target="_blank" rel="noopener noreferrer" class="whatsapp-float" title="Napisz na WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
             <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
         </svg>
     </a>
-
-    <!-- Cookie Banner -->
-    <div id="cookieBanner" class="cookie-banner">
-        <div class="cookie-content">
-            <p>Ta strona używa plików cookies (Google Analytics) do analizy ruchu. Czy wyrażasz zgodę?</p>
-            <div class="cookie-buttons">
-                <button id="cookieAccept" class="btn btn-primary btn-small">Akceptuję</button>
-                <button id="cookieReject" class="btn btn-secondary btn-small">Odrzucam</button>
-            </div>
-        </div>
-    </div>
 
     <noscript><style>section{opacity:1!important;transform:none!important}</style></noscript>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
