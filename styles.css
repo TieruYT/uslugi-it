@@ -751,23 +751,6 @@ section {
     flex-wrap: wrap;
 }
 
-.btn-whatsapp {
-    background: #25D366;
-    color: var(--white);
-    padding: 15px 35px;
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    font-weight: 600;
-    transition: var(--transition);
-    display: inline-block;
-    font-size: 1rem;
-}
-
-.btn-whatsapp:hover {
-    background: #128C7E;
-    transform: translateY(-2px);
-}
-
 .booking-note {
     background: var(--bg-light);
     padding: 1.5rem;
@@ -1257,23 +1240,6 @@ section {
     transform: scale(1.05);
 }
 
-.priority-whatsapp {
-    display: inline-block;
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--white);
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    background: #25D366;
-    border-radius: 8px;
-    transition: var(--transition);
-}
-
-.priority-whatsapp:hover {
-    background: #128C7E;
-    transform: scale(1.05);
-}
-
 .priority-subtitle {
     margin-top: 0.3rem;
     font-size: 0.85rem;
@@ -1590,49 +1556,6 @@ section {
     border-top: 1px solid #eee;
     color: var(--text-light);
     font-size: 0.9rem;
-}
-
-/* WhatsApp Floating Button */
-.whatsapp-float {
-    position: fixed;
-    bottom: 95px;
-    right: 30px;
-    width: 55px;
-    height: 55px;
-    background: #25D366;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-    z-index: 998;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-}
-
-.whatsapp-float svg {
-    width: 30px;
-    height: 30px;
-}
-
-@media (max-width: 480px) {
-    .whatsapp-float {
-        bottom: 85px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-    }
-
-    .whatsapp-float svg {
-        width: 26px;
-        height: 26px;
-    }
 }
 
 /* Reduced motion for accessibility */
