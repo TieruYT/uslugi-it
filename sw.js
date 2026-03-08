@@ -1,4 +1,4 @@
-const CACHE_NAME = 'konsultant-orange-v4';
+const CACHE_NAME = 'konsultant-orange-v5';
 const ASSETS_TO_CACHE = [
     'index.html',
     'uslugi.html',
