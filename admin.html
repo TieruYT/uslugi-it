@@ -234,6 +234,12 @@
 
         .loading { text-align: center; color: #94a3b8; padding: 2rem; }
 
+        .booking-actions { display: flex; gap: 0.4rem; margin-top: 0.5rem; }
+        .btn-cancel { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); padding: 0.3rem 0.6rem; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: background 0.2s; }
+        .btn-cancel:hover { background: rgba(239,68,68,0.3); }
+        .btn-reschedule { background: rgba(59,130,246,0.15); color: #3b82f6; border: 1px solid rgba(59,130,246,0.3); padding: 0.3rem 0.6rem; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: background 0.2s; text-decoration: none; }
+        .btn-reschedule:hover { background: rgba(59,130,246,0.3); }
+
         @media (max-width: 768px) {
             .booking-item { grid-template-columns: 1fr; }
             .admin-header { padding: 1rem; }
@@ -507,11 +513,21 @@
                 else if (b.responses && b.responses.location && b.responses.location.value) phone = b.responses.location.value;
                 var notes = b.responses && b.responses.notes ? b.responses.notes : '';
 
+                var actions = '';
+                if (b.status !== 'CANCELLED') {
+                    var rescheduleUrl = 'https://cal.com/reschedule/' + (b.uid || '');
+                    actions = '<div class="booking-actions">' +
+                        '<a href="' + rescheduleUrl + '" target="_blank" rel="noopener noreferrer" class="btn-reschedule">Przełóż</a>' +
+                        '<button class="btn-cancel" data-booking-id="' + b.id + '" data-booking-name="' + escapeHtml(name) + '">Anuluj</button>' +
+                    '</div>';
+                }
+
                 return '<div class="booking-item status-' + statusClass + '">' +
                     '<div>' +
                         '<div class="booking-name">' + escapeHtml(name) + '</div>' +
                         '<div class="booking-details">' + (phone ? phone + ' | ' : '') + (b.title || '') + '</div>' +
                         (notes ? '<div class="booking-details" style="font-style:italic;margin-top:0.25rem;">' + escapeHtml(notes) + '</div>' : '') +
+                        actions +
                     '</div>' +
                     '<div>' +
                         '<div class="booking-details">' + dateStr + '</div>' +
@@ -520,6 +536,36 @@
                     '<div><span class="booking-status ' + statusClass + '">' + statusLabel + '</span></div>' +
                 '</div>';
             }).join('');
+
+            // Attach cancel handlers
+            list.querySelectorAll('.btn-cancel').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var bookingId = btn.dataset.bookingId;
+                    var bookingName = btn.dataset.bookingName;
+                    if (confirm('Anulować wizytę klienta ' + bookingName + '?')) {
+                        cancelBooking(bookingId);
+                    }
+                });
+            });
+        }
+
+        function cancelBooking(bookingId) {
+            fetch('https://api.cal.com/v1/bookings/' + bookingId + '/cancel?apiKey=' + CAL_API_KEY, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ cancellationReason: 'Anulowano przez konsultanta' })
+            })
+            .then(function(r) {
+                if (r.ok) {
+                    alert('Wizyta anulowana. Klient otrzyma powiadomienie e-mail.');
+                    loadBookings();
+                } else {
+                    return r.json().then(function(d) { throw new Error(d.message || 'Błąd API'); });
+                }
+            })
+            .catch(function(err) {
+                alert('Błąd anulowania: ' + err.message);
+            });
         }
 
         function escapeHtml(str) {
