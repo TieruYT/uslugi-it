@@ -284,6 +284,7 @@
             <button class="tab-btn" data-tab="promo">Promocje</button>
             <button class="tab-btn" data-tab="availability">Dostepnosc</button>
             <button class="tab-btn" data-tab="links">Linki</button>
+            <button class="tab-btn" data-tab="settings">Ustawienia</button>
         </div>
 
         <!-- Rezerwacje Tab -->
@@ -375,9 +376,23 @@
                 <h3>Przydatne linki</h3>
                 <div class="link-list">
                     <a href="https://app.cal.com/bookings" target="_blank" rel="noopener noreferrer">Cal.com - Rezerwacje</a>
-                    <a href="https://app.netlify.com" target="_blank" rel="noopener noreferrer">Netlify - Hosting</a>
                     <a href="https://console.firebase.google.com" target="_blank" rel="noopener noreferrer">Firebase Console</a>
                 </div>
+            </div>
+        </div>
+
+        <!-- Ustawienia Tab -->
+        <div class="tab-content" id="tab-settings">
+            <div class="card" id="apiKeySetup">
+                <h3>Klucz API Cal.com</h3>
+                <p style="color:#94a3b8;font-size:0.85rem;margin-bottom:1rem;">Klucz jest przechowywany bezpiecznie w Firebase - nie w kodzie strony. Znajdziesz go w Cal.com &rarr; Settings &rarr; Developer &rarr; API Keys.</p>
+                <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                    <div class="form-group" style="margin:0;flex:1;min-width:200px;">
+                        <input type="password" id="calApiKeyInput" placeholder="cal_live_...">
+                    </div>
+                    <button class="btn btn-primary btn-sm" id="saveApiKey">Zapisz klucz</button>
+                </div>
+                <p id="apiKeyStatus" style="color:#22c55e;font-size:0.85rem;margin-top:0.5rem;display:none;"></p>
             </div>
         </div>
     </div>
@@ -393,7 +408,7 @@
         var auth = firebase.auth();
         var db = firebase.database();
 
-        var CAL_API_KEY = 'cal_live_bd24682709ad321d49aa5f8cc18073f3';
+        var CAL_API_KEY = null;
         var allBookings = [];
         var currentFilter = 'upcoming';
 
@@ -411,7 +426,18 @@
                 loginScreen.style.display = 'none';
                 adminContainer.style.display = 'block';
                 userEmail.textContent = user.email;
-                loadBookings();
+                // Load Cal.com API key from Firebase, then load bookings
+                db.ref('config/calApiKey').once('value').then(function(snap) {
+                    CAL_API_KEY = snap.val();
+                    if (CAL_API_KEY) {
+                        var status = document.getElementById('apiKeyStatus');
+                        status.textContent = 'Klucz API jest aktywny.';
+                        status.style.display = 'block';
+                        loadBookings();
+                    } else {
+                        document.getElementById('bookingsList').innerHTML = '<div class="loading">Skonfiguruj klucz API Cal.com w zakładce Ustawienia.</div>';
+                    }
+                });
                 loadPromo();
                 loadDaysOff();
             } else {
@@ -648,6 +674,22 @@
                 });
             });
         }
+
+        // Save Cal.com API key
+        document.getElementById('saveApiKey').addEventListener('click', function() {
+            var key = document.getElementById('calApiKeyInput').value.trim();
+            if (!key) { alert('Wpisz klucz API.'); return; }
+            db.ref('config/calApiKey').set(key).then(function() {
+                CAL_API_KEY = key;
+                document.getElementById('calApiKeyInput').value = '';
+                var status = document.getElementById('apiKeyStatus');
+                status.textContent = 'Klucz zapisany. Rezerwacje załadowane.';
+                status.style.display = 'block';
+                loadBookings();
+            }).catch(function(err) {
+                alert('Błąd zapisu: ' + err.message);
+            });
+        });
 
         document.getElementById('addDayOff').addEventListener('click', function() {
             var date = document.getElementById('dayOffDate').value;
