@@ -525,7 +525,7 @@
                 return '<div class="booking-item status-' + statusClass + '">' +
                     '<div>' +
                         '<div class="booking-name">' + escapeHtml(name) + '</div>' +
-                        '<div class="booking-details">' + (phone ? phone + ' | ' : '') + (b.title || '') + '</div>' +
+                        '<div class="booking-details">' + (phone ? phone + ' | ' : '') + cleanTitle(b.title) + '</div>' +
                         (notes ? '<div class="booking-details" style="font-style:italic;margin-top:0.25rem;">' + escapeHtml(notes) + '</div>' : '') +
                         actions +
                     '</div>' +
@@ -566,6 +566,11 @@
             .catch(function(err) {
                 alert('Błąd anulowania: ' + err.message);
             });
+        }
+
+        function cleanTitle(title) {
+            if (!title) return '';
+            return escapeHtml(title.replace(/ between .+$/, ''));
         }
 
         function escapeHtml(str) {
