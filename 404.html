@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>404 - Strona nie znaleziona</title>
+    <script>
+        // Redirect /page to /page.html (GitHub Pages doesn't do this automatically)
+        (function() {
+            var path = window.location.pathname;
+            if (path !== '/' && !path.endsWith('.html') && !path.endsWith('/') && path.indexOf('.') === -1) {
+                window.location.replace(path + '.html');
+            }
+        })();
+    </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
