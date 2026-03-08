@@ -579,12 +579,6 @@ a.service-card-link:hover {
     color: var(--primary-color);
     font-weight: 600;
     font-size: 0.9rem;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-a.service-card-link:hover .service-cta {
-    opacity: 1;
 }
 
 /* Pricing Section */
